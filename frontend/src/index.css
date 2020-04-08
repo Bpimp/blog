@@ -88,10 +88,14 @@ main{
 
 /* content */
 .content{
-  background:pink;
   height:600px;
   margin-right:298px;
-  padding:40px;
+}
+.article-list{
+  background: #fff;
+  padding:30px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 3px 2px #ddd;
 }
 /* aside */
 aside{

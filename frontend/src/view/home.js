@@ -9,6 +9,10 @@ class Home extends React.Component{
             <Aside/>
             <div className="content">
                 <List/>
+                <List/>
+                <List/>
+                <List/>
+                <List/>
             </div>
         </main>
         )

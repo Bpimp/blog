@@ -5,7 +5,7 @@ import List from '../components/list';
 class Home extends React.Component{
     render(){
         return (
-        <main>
+        <main className="clear">
             <Aside/>
             <div className="content">
                 <List/>

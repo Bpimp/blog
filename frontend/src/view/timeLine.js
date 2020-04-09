@@ -4,17 +4,18 @@ import Aside from '../components/sideBar';
 class TimeLine extends React.Component{
     render(){
         return (
-            <main>
+            <main className="clear">
                 <Aside/>
                 <div className="content">
-                    <div className="box1">
-                        <div className="list">
+                    <p className="year">2020</p>
+                    <ul className="timelist">
+                        <li className="item">
                             <span>三墩了福林酚克利夫兰</span>
-                        </div>
-                        <div className="list">
+                        </li>
+                        <li className="item">
                             <span>三墩了福林酚克利夫兰</span>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </main>
         )

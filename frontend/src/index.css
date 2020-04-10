@@ -1,5 +1,5 @@
 /* reset */
-body,ul,li,h2,h3,p{
+body,ul,li,h2,h3,p,a{
   margin:0;
   padding:0;
 }
@@ -13,7 +13,7 @@ li{
 }
 a{
   text-decoration: none;
-  color:#000
+  color:#000;
 }
 h2,h3{
   font-weight: normal;
@@ -107,7 +107,7 @@ aside #intro .ellipsis{
   text-overflow: ellipsis;
   overflow: hidden;
 }
-aside #tag{
+aside #tag,aside #basic{
   background: #fff;
   padding:20px;
   border-radius:5px;

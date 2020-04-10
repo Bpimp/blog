@@ -1,5 +1,5 @@
 import React from 'react';
-import Aside from '../components/sideBar';
+import Aside from '../components/sidebar/index';
 
 class TimeLine extends React.Component{
     render(){

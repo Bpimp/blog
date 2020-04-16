@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-let articleSchema=new mongoose.Schema({
+let ArticleSchema=new mongoose.Schema({
     title:{
         type:String,
         required:true
@@ -12,5 +12,12 @@ let articleSchema=new mongoose.Schema({
         type:Date,
         default:Date.now
     },
-
+    content:{
+        type:String,
+        require:true
+    },
+    tab:{
+        type:String
+    }
 })
+export default ArticleSchema;

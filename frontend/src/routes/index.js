@@ -1,9 +1,10 @@
 import React from 'react';
 import {Route,Switch,Redirect} from 'react-router-dom';
-import Home from '../view/home';
-import TimeLine from '../view/timeLine';
-import About from '../view/about';
-import Content from '../view/content';
+import Home from '../view/main/home';
+import TimeLine from '../view/main/timeLine';
+import About from '../view/main/about';
+import Content from '../view/main/content';
+import Admin from '../view/admin';
 
 class RouterIndex extends React.Component{
     render(){
@@ -16,6 +17,7 @@ class RouterIndex extends React.Component{
                 <Route path="/time" component={TimeLine}/>
                 <Route path="/about" component={About}/>
                 <Route path="/content" component={Content}/>
+                <Route path="/admin" component={Admin}/>
             </Switch>
         )
     }

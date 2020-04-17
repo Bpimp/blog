@@ -1,12 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Demo from './reg'
+import NormalLoginForm from './reg'
 
 class Aside extends React.Component{
     render(){
         return (
             <aside>
-                <Demo/>
+                <NormalLoginForm/>
                 <div id="intro" className="piece">
                     <h2 className="title">介绍</h2>
                     <ul>

@@ -8,6 +8,10 @@ let UserSchema=new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    create_time:{
+        type:Date,
+        default:Date.now
     }
 })
 export default UserSchema;

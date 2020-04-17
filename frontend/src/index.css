@@ -102,29 +102,41 @@ aside{
   width:280px;
   float:right;
 }
-aside #intro .ellipsis{
+#intro .ellipsis{
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
-aside #tag,aside #basic{
+#tag,aside #basic{
   background: #fff;
   padding:20px;
   border-radius:5px;
 }
-aside #tag h3{
+#tag h3{
   border-bottom:1px solid #eee;
   line-height:36px;
 }
-aside #tag .tagList li{
+#tag .tagList li{
   float:left;
   margin:0 0 10px 5px; 
 }
-aside #tag .tagList li a{
+#tag .tagList li a{
   background: mediumturquoise;
   color:#fff;
   border-radius:5px;
   padding:5px;
+}
+#normal-login .login-form {
+  max-width: 300px;
+}
+#normal-login .login-form-forgot {
+  float: right;
+}
+#normal-login .ant-col-rtl .login-form-forgot {
+  float: left;
+}
+#normal-login .login-form-button {
+  width: 100%;
 }
 
 /* timeline */

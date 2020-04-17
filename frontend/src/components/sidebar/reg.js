@@ -1,77 +1,64 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
-
-const Demo = () => {
+const NormalLoginForm = () => {
   const onFinish = values => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+    console.log('Received values of form: ', values);
   };
 
   return (
     <Form
-    className="piece"
-      {...layout}
-      name="basic"
+      name="normal_login"
+      className="login-form piece"
       initialValues={{
         remember: true,
       }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Username"
         name="username"
         rules={[
           {
             required: true,
-            message: '请输入用户名',
+            message: 'Please input your Username!',
           },
         ]}
       >
-        <Input />
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
       </Form.Item>
-
       <Form.Item
-        label="Password"
         name="password"
         rules={[
           {
             required: true,
-            message: '请输入密码',
+            message: 'Please input your Password!',
           },
         ]}
       >
-        <Input.Password />
+        <Input
+          prefix={<LockOutlined className="site-form-item-icon" />}
+          type="password"
+          placeholder="Password"
+        />
+      </Form.Item>
+      <Form.Item>
+        <Form.Item name="remember" valuePropName="checked" noStyle>
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <a className="login-form-forgot" href="">
+          Forgot password
+        </a>
       </Form.Item>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
+      <Form.Item>
+        <Button type="primary" htmlType="submit" className="login-form-button">
+          Log in
         </Button>
+        Or <a href="">register now!</a>
       </Form.Item>
     </Form>
   );
 };
-export default Demo;
+export default NormalLoginForm;

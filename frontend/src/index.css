@@ -1,7 +1,11 @@
 /* reset */
-body,ul,li,h2,h3,p,a{
+body,ul,li,h2,h3,p,a,button{
   margin:0;
   padding:0;
+}
+button{
+  border:1px solid transparent;
+  outline: none;
 }
 .clear:after{
   content:'';
@@ -126,19 +130,18 @@ aside{
   border-radius:5px;
   padding:5px;
 }
-#normal-login .login-form {
-  max-width: 300px;
+.login-form a{
+  color:#1890ff
 }
-#normal-login .login-form-forgot {
-  float: right;
+.login-form .login-form-forgot{
+  float:right;
 }
-#normal-login .ant-col-rtl .login-form-forgot {
-  float: left;
+.login-form .login-form-button{
+  width:100%;
 }
-#normal-login .login-form-button {
-  width: 100%;
+.isLogin{
+  border:none;
 }
-
 /* timeline */
 .timelist{
   position: relative;

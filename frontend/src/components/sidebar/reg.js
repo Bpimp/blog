@@ -1,64 +1,101 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import {
+  Form,
+  Input,
+  Row,
+  Col,
+  Button
+} from 'antd';
 
-const NormalLoginForm = () => {
+const formItemLayout = {
+  labelCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 8,
+    },
+  },
+  wrapperCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 16,
+    },
+  },
+};
+const Reg = (props) => {
   const onFinish = values => {
     console.log('Received values of form: ', values);
   };
-
+  const handleChange=()=>{
+      props.changeStatus()
+  }
   return (
     <Form
-      name="normal_login"
-      className="login-form piece"
-      initialValues={{
-        remember: true,
-      }}
+    className="piece"
+      {...formItemLayout}
+      name="register"
       onFinish={onFinish}
+      scrollToFirstError
     >
-      <Form.Item
+    <Form.Item
         name="username"
+        label="用户名"
         rules={[
           {
             required: true,
-            message: 'Please input your Username!',
+            message: '请输入用户名!',
           },
         ]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input/>
       </Form.Item>
       <Form.Item
         name="password"
+        label="密码"
         rules={[
           {
             required: true,
-            message: 'Please input your Password!',
+            message: '请输入密码',
           },
         ]}
+        hasFeedback
       >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
+        <Input.Password />
       </Form.Item>
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
+      <Form.Item
+        name="confirm"
+        label="确认密码"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: '请确认密码',
+          },
+          ({ getFieldValue }) => ({
+            validator(rule, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
 
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
+              return Promise.reject('两次密码不一致');
+            },
+          }),
+        ]}
+      >
+        <Input.Password />
       </Form.Item>
-
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
+      <Form.Item >
+        <Button type="primary" htmlType="submit">
+          注册
         </Button>
-        Or <a href="">register now!</a>
+        Or <button className="isLogin" onClick={handleChange}>login now!</button>
       </Form.Item>
     </Form>
   );
 };
-export default NormalLoginForm;
+
+export default Reg;

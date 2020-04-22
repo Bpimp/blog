@@ -136,11 +136,14 @@ aside{
 .login-form .login-form-forgot{
   float:right;
 }
-.login-form .login-form-button{
+.login-form .login-form-button,#register .register-form-button{
   width:100%;
 }
 .isLogin{
   border:none;
+  cursor: pointer;
+  background:transparent;
+  color:#1890ff;
 }
 /* timeline */
 .timelist{

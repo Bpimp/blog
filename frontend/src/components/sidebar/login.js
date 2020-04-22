@@ -58,7 +58,7 @@ const Login = (props) => {
         <Button type="primary" htmlType="submit" className="login-form-button">
           登录
         </Button>
-        Or <button htmlType="submit" className="isLogin login-form-button" onClick={handleChange}>register now!</button>
+        Or <button className="isLogin" onClick={handleChange}>register now!</button>
       </Form.Item>
     </Form>
   );

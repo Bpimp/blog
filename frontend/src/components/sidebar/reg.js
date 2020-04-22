@@ -35,12 +35,12 @@ const Reg = (props) => {
   return (
     <Form
     className="piece"
-      {...formItemLayout}
       name="register"
       onFinish={onFinish}
       scrollToFirstError
     >
     <Form.Item
+    {...formItemLayout}
         name="username"
         label="用户名"
         rules={[
@@ -53,6 +53,7 @@ const Reg = (props) => {
         <Input/>
       </Form.Item>
       <Form.Item
+      {...formItemLayout}
         name="password"
         label="密码"
         rules={[
@@ -66,6 +67,7 @@ const Reg = (props) => {
         <Input.Password />
       </Form.Item>
       <Form.Item
+      {...formItemLayout}
         name="confirm"
         label="确认密码"
         dependencies={['password']}
@@ -89,7 +91,7 @@ const Reg = (props) => {
         <Input.Password />
       </Form.Item>
       <Form.Item >
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" className="register-form-button">
           注册
         </Button>
         Or <button className="isLogin" onClick={handleChange}>login now!</button>

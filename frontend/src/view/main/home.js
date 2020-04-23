@@ -7,7 +7,7 @@ import Footer from '../../components/footer';
 class Home extends React.Component{
     render(){
         return (
-        <div className="App">
+        <>
             <Header/>
             <main className="clear">
                 <Aside/>
@@ -20,7 +20,7 @@ class Home extends React.Component{
                 </div>
             </main>
             <Footer/>
-        </div>
+        </>
         )
     }
 }

@@ -1,27 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Login from './login';
-import Reg from './reg';
 
 class Aside extends React.Component{
-    constructor(props){
-        super();
-        this.state={
-            isLogin:true
-        };
-        this.changeStatus=this.changeStatus.bind(this)
-    }
-    changeStatus(){
-        let {isLogin}=this.state;
-        isLogin=!isLogin;
-        this.setState({
-            isLogin
-        })
-    }
     render(){
         return (
             <aside>
-                {this.state.isLogin?<Login changeStatus={this.changeStatus}/>:<Reg changeStatus={this.changeStatus}/>}
                 <div id="intro" className="piece">
                     <h2 className="title">介绍</h2>
                     <ul>

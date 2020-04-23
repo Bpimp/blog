@@ -12,6 +12,11 @@ class Nav extends React.Component{
                     <li><Link to="/time">时间轴</Link></li>
                     <li><Link to="/about">关于</Link></li>
                 </ul>
+                <div className="">
+                    <span>登录</span>
+                    ·
+                    <span>注册</span>    
+                </div>>
             </div>
         </header>
         )

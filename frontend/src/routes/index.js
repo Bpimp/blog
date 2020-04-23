@@ -5,6 +5,7 @@ import TimeLine from '../view/main/timeLine';
 import About from '../view/main/about';
 import Content from '../view/main/content';
 import Admin from '../view/admin';
+import Login from '../view/login';
 
 class RouterIndex extends React.Component{
     render(){
@@ -18,6 +19,7 @@ class RouterIndex extends React.Component{
                 <Route path="/about" component={About}/>
                 <Route path="/content" component={Content}/>
                 <Route path="/admin" component={Admin}/>
+                <Route path="/login" component={Login}/>
             </Switch>
         )
     }

@@ -4,7 +4,7 @@ import Footer from '../../components/footer';
 
 function About(){
         return (
-            <div className="App">
+            <>
                 <Header/>
                 <main className="clear">
                     <h2>我</h2>
@@ -12,7 +12,7 @@ function About(){
                     <p>blablabla</p>
                 </main> 
                 <Footer/>
-            </div>
+            </>
         )
 }
 export default About;

@@ -5,7 +5,7 @@ import Footer from '../../components/footer';
 class Content extends React.Component{
     render(){
         return (
-            <div className="App">
+            <>
                 <Header/>
                 <main className="clear">
                     <h2>标题</h2>
@@ -14,7 +14,7 @@ class Content extends React.Component{
                     <p>内容</p>
                 </main>
                 <Footer/>
-            </div>
+            </>
         )
     }
 }

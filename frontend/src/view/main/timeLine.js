@@ -6,7 +6,7 @@ import Footer from '../../components/footer';
 class TimeLine extends React.Component{
     render(){
         return (
-            <div className="App">
+            <>
                 <Header/>
                 <main className="clear">
                     <Aside/>
@@ -23,7 +23,7 @@ class TimeLine extends React.Component{
                     </div>
                 </main>
                 <Footer/>
-            </div>
+            </>
         )
     }
 }

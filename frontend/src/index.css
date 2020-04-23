@@ -44,6 +44,7 @@ body {
   padding:20px;
   border-radius:5px;
   margin-bottom:20px;
+  width:280px;
 }
 .title{
   margin-bottom:10px;
@@ -177,4 +178,14 @@ footer{
   background: #000;
   border-top:10px solid #2df;
   color:#fff;
+}
+/*login*/
+.login{
+  position: absolute;
+  height:100%;
+  width:100%;
+  background:#888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,8 +1,50 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import Mask from './mask';
+import Login from './login';
+import Reg from './reg';
 
 class Nav extends React.Component{
+    constructor(){
+        super();
+        this.state={
+            showMask:false,
+            isLogin:null
+        }
+        this.handleShow=this.handleShow.bind(this);
+        this.handleHide=this.handleHide.bind(this);
+        this.changeStatus=this.changeStatus.bind(this);
+    }
+    handleShow(val){
+        this.setState({
+            showMask:true,
+            isLogin:val
+        })
+    }
+    handleHide(val){
+        this.setState({
+            showMask:false,
+            isLogin:val
+        })
+    }
+    changeStatus(){
+        let {isLogin}=this.state;
+        isLogin=!isLogin;
+        this.setState({
+            isLogin
+        })
+    }
     render(){
+        let {showMask,isLogin}=this.state;
+        const mask=showMask?(
+            <Mask>
+                {isLogin?<Login changeStatus={this.changeStatus}/>:<Reg changeStatus={this.changeStatus}/>}
+                <button 
+                    className="cancel"
+                    onClick={this.handleHide}    
+                >X</button>
+            </Mask>
+        ):null
         return (
             <header>
             <div id="navbox">
@@ -12,11 +54,12 @@ class Nav extends React.Component{
                     <li><Link to="/time">时间轴</Link></li>
                     <li><Link to="/about">关于</Link></li>
                 </ul>
-                <div className="">
-                    <span>登录</span>
+                <div className="loginPopup">
+                    <span onClick={()=>this.handleShow(true)}>登录  </span>
                     ·
-                    <span>注册</span>    
-                </div>>
+                    <span onClick={()=>this.handleShow(false)}>  注册</span>  
+                    {mask}
+                </div>
             </div>
         </header>
         )

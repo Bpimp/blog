@@ -5,7 +5,7 @@ import TimeLine from '../view/main/timeLine';
 import About from '../view/main/about';
 import Content from '../view/main/content';
 import Admin from '../view/admin';
-import Login from '../view/login';
+import Login from '../view/loginpage';
 
 class RouterIndex extends React.Component{
     render(){

@@ -8,7 +8,7 @@ import './index.css';
 ReactDOM.render(
   <BrowserRouter>
     <div className="App">
-      <RouterIndex />
+      <RouterIndex/>
     </div>
   </BrowserRouter>
     ,

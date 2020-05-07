@@ -1,4 +1,5 @@
 import React from 'react';
+import {Timeline} from 'antd';
 import Aside from '../../components/sidebar/index';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
@@ -11,15 +12,12 @@ class TimeLine extends React.Component{
                 <main className="clear">
                     <Aside/>
                     <div className="content">
-                        <p className="year">2020</p>
-                        <ul className="timelist">
-                            <li className="item">
-                                <span>三墩了福林酚克利夫兰</span>
-                            </li>
-                            <li className="item">
-                                <span>三墩了福林酚克利夫兰</span>
-                            </li>
-                        </ul>
+                        <Timeline mode={'left'}>
+                            <Timeline.Item label="2015-09-01">创建博客</Timeline.Item>
+                            <Timeline.Item label="2015-09-01 09:12:11">Solve initial network problems</Timeline.Item>
+                            <Timeline.Item>Technical testing</Timeline.Item>
+                            <Timeline.Item label="2015-09-01 09:12:11">Network problems being solved</Timeline.Item>
+                        </Timeline>
                     </div>
                 </main>
                 <Footer/>

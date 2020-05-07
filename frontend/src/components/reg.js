@@ -91,6 +91,43 @@ const Reg = (props) => {
         >
           <Input.Password />
         </Form.Item>
+        <Form.Item
+        name="email"
+        label="E-mail"
+        rules={[
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item label="验证码" extra="请输入获取的验证码.">
+        <Row gutter={8}>
+          <Col span={12}>
+            <Form.Item
+              name="captcha"
+              noStyle
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input the captcha you got!',
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Button>点击获取</Button>
+          </Col>
+        </Row>
+      </Form.Item>
         <Form.Item >
           <Button type="primary" htmlType="submit" className="register-form-button">
             注册

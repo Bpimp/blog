@@ -174,30 +174,10 @@ aside{
   background:transparent;
   color:#1890ff;
 }
-/* timeline */
-.timelist{
-  position: relative;
-  left:22px;
-}
-.timelist::before{
-  position: absolute;
-  top:0;
-  bottom:0;
-  border:2px solid lightskyblue;
-  border-radius: 2px;
-  content:'';
-}
-.year{
-  margin:10px 0;
-  display: inline-block;
-  background: lightskyblue;
-  padding:6px 8px;
-  border-radius: 6px;
-}
-.item{
-  height:38x;
-  line-height: 38px;
-  margin-left:20px;
+/*timeline*/
+.ant-timeline{
+  padding:30px;
+  background: #fff;
 }
 /* footer */
 footer{

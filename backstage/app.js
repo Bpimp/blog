@@ -7,17 +7,13 @@ let app=new Koa();
 let url="mongodb://localhost:27018/blog"
 app.use(bodyParser())
 
-router.get('/',async ctx=>{
-    ctx.response.type="html";
-    ctx.response.body='<a href="/">Index Page</a>';
-})
-router.get('/about', async ctx=>{
-    ctx.response.body="Hello World";
-})
-app.use(async (ctx,next)=>{
-    console.log(`${Date.now()} ${ctx.request.method} ${ctx.request.url}`);
-    await next();
-})
+const main = function(ctx) {
+    const n = Number(ctx.cookies.get('view') || 0) + 1;
+    ctx.cookies.set('view', n);
+    ctx.response.body = n + ' views';
+  }
+  
+  app.use(main);
 app.use(router.routes());
 app.use(router.allowedMethods());
 mongoose.connect(url,{useNewUrlParser:true ,useUnifiedTopology: true},function(err,db){

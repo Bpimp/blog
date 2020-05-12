@@ -14,4 +14,4 @@ let UserSchema=new mongoose.Schema({
         default:Date.now
     }
 })
-export default UserSchema;
+module.exports=mongoose.model('User',UserSchema);

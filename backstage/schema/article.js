@@ -20,4 +20,4 @@ let ArticleSchema=new mongoose.Schema({
         type:String
     }
 })
-export default ArticleSchema;
+module.exports=mongoose.model('Article',ArticleSchema);

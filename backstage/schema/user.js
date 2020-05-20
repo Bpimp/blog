@@ -12,6 +12,14 @@ let UserSchema=new mongoose.Schema({
     create_time:{
         type:Date,
         default:Date.now
+    },
+    email:{
+        type:String,
+        required:true
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false
     }
 })
 module.exports=mongoose.model('User',UserSchema);

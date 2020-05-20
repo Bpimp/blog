@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {
   Form,
   Input,
@@ -27,7 +28,11 @@ const formItemLayout = {
 };
 const Reg = (props) => {
   const onFinish = values => {
-    console.log('Received values of form: ', values);
+    //console.log('Received values of form: ', values);
+    axios.post('http://localhost:8080/user/register',{values})
+    .then(res=>{
+      console.log(res)
+    })
   };
   const handleChange=()=>{
       props.changeStatus()
@@ -107,7 +112,7 @@ const Reg = (props) => {
       >
         <Input />
       </Form.Item>
-      <Form.Item label="验证码" extra="请输入获取的验证码.">
+      {/* <Form.Item label="验证码" extra="请输入获取的验证码.">
         <Row gutter={8}>
           <Col span={12}>
             <Form.Item
@@ -127,7 +132,7 @@ const Reg = (props) => {
             <Button>点击获取</Button>
           </Col>
         </Row>
-      </Form.Item>
+      </Form.Item> */}
         <Form.Item >
           <Button type="primary" htmlType="submit" className="register-form-button">
             注册

@@ -7,6 +7,8 @@ router.get('/user',async(ctx,next)=>{
     await next();
 })
 router.post('/user/register',async(ctx,next)=>{
-    
+    let user=ctx.request.body;
+    console.log(user);
+    ctx.status=200
 })
 module.exports=router;

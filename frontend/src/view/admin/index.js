@@ -1,9 +1,14 @@
 import React from 'react';
+import Navigation from './menu';
+import './index.css';
 
 class Admin extends React.Component{
     render(){
         return (
-            <main>后台管理页面</main>
+            <div id="admin">
+                <Navigation/>
+                <div className="admin-content">后台管理页面</div>
+            </div>
         )
     }
 }

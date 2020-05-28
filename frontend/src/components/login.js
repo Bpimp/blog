@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
@@ -50,9 +51,9 @@ const Login = (props) => {
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
 
-          <a className="login-form-forgot" href="">
+          <Link className="login-form-forgot" to="">
             忘记密码
-          </a>
+          </Link>
         </Form.Item>
 
         <Form.Item>

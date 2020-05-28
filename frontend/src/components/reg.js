@@ -30,10 +30,12 @@ class Reg extends React.Component {
     this.userName=React.createRef();
   }
   onFinish = values => {
-    //console.log('Received values of form: ', values);
     api.register({values})
     .then(res=>{
       console.log(res)
+    })
+    .catch(err=>{
+      console.log(err)
     })
   };
   
@@ -42,6 +44,9 @@ class Reg extends React.Component {
     api.checkName({userName})
     .then(res=>{
       console.log(res)
+    })
+    .catch(err=>{
+      console.log(err)
     })
   }
   handleChange=()=>{

@@ -27,7 +27,10 @@ const formItemLayout = {
 class Reg extends React.Component {
   constructor(){
     super()
-    this.userName=React.createRef();
+    this.state={
+      message:''
+    }
+    this.username=React.createRef();
   }
   onFinish = values => {
     api.register({values})
@@ -40,10 +43,14 @@ class Reg extends React.Component {
   };
   
   checkName=()=>{
-    const userName=this.userName.current.state.value;
-    api.checkName({userName})
+    const username=this.username.current.state.value;
+    api.checkName({username})
     .then(res=>{
-      console.log(res)
+      if(res.status===1){
+        this.setState({
+          message:res.msg
+        })
+      }
     })
     .catch(err=>{
       console.log(err)
@@ -53,6 +60,7 @@ class Reg extends React.Component {
       this.props.changeStatus()
   }
   render(){
+    let {message}=this.state;
     return (
       <div className="mask">
         <Form
@@ -68,12 +76,15 @@ class Reg extends React.Component {
             rules={[
               {
                 required: true,
-                message: '请输入用户名!',
-              },
+                message: "请输入用户名",
+              },{
+                required:true,
+                message:{message}
+              }
             ]}
           >
             <Input
-              ref={this.userName} 
+              ref={this.username} 
               onBlur={this.checkName}/>
           </Form.Item>
           <Form.Item

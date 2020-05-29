@@ -10,7 +10,7 @@
     "koa-compose": "^4.1.0",
     "koa-router": "^8.0.8",
     "koa2-cors": "^2.0.6",
-    "mongoose": "^5.9.7",
+    "mongoose": "^5.9.16",
     "supervisor": "^0.12.0"
   },
   "devDependencies": {},

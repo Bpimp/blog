@@ -1,38 +1,35 @@
 const router=require('koa-router')();
-const User=require('../schema/user');
+const User=require('../schemas/users');
+let responseData;
 
-router.use(function(ctx,next){
+router.use((ctx,next)=>{
     responseData={
         status:0,
-        msg:'',
-        data:{}
+        msg:''
     }
     next();
 })
-/* router.post('/user/checkName',async function (ctx,next){
-    let {userName}=ctx.request.body;
-    User.findOne({
-        userName
-    }).then(function(userInfo){
-        if(userInfo){
-            responseData.status=1;
-            responseData.msg="用户名已存在";
-            ctx.body=responseData;
-            return;
-        }
-        responseData.status=200;
-        responseData.msg="用户名可用";
-        ctx.body=responseData;
+router.post('/user/checkName',(ctx,next)=>{
+    let {username}=ctx.request.body;
+    let user=User.findOne({
+        username:username
     })
-    await next();
-}) */
+    if(user){
+        responseData.status=1;
+        responseData.msg="用户已存在"
+        ctx.body=responseData;
+        return;
+    }
+    responseData.status=200;
+    responseData.msg="用户名可用";
+    ctx.body=responseData;
+})
 router.post('/user/register',async (ctx,next)=>{
     let {username,password,email}=ctx.request.body.values;
     User.findOne({
         username
     }).then(function(userInfo){
         if(userInfo){
-            console.log(1)
             responseData.status=1;
             responseData.msg="用户名已存在";
             ctx.body=responseData;

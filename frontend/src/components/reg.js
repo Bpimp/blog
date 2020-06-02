@@ -1,4 +1,5 @@
 import React from 'react';
+//import axios from 'axios';
 import api from '../api/api';
 import {
   Form,
@@ -25,13 +26,6 @@ const formItemLayout = {
   },
 };
 class Reg extends React.Component {
-  constructor(){
-    super()
-    this.state={
-      message:''
-    }
-    this.username=React.createRef();
-  }
   onFinish = values => {
     api.register({values})
     .then(res=>{
@@ -42,25 +36,19 @@ class Reg extends React.Component {
     })
   };
   
-  checkName=()=>{
-    const username=this.username.current.state.value;
-    api.checkName({username})
+  checkName=(rule,value)=>{
+    return api.checkName({value})
     .then(res=>{
-      if(res.status===1){
-        this.setState({
-          message:res.msg
-        })
+      if(res.code===1){
+        return Promise.reject(res.msg)
       }
-    })
-    .catch(err=>{
-      console.log(err)
+      return Promise.resolve("")
     })
   }
   handleChange=()=>{
       this.props.changeStatus()
   }
   render(){
-    let {message}=this.state;
     return (
       <div className="mask">
         <Form
@@ -78,14 +66,11 @@ class Reg extends React.Component {
                 required: true,
                 message: "请输入用户名",
               },{
-                required:true,
-                message:{message}
+                validator:this.checkName
               }
             ]}
           >
-            <Input
-              ref={this.username} 
-              onBlur={this.checkName}/>
+            <Input/>
           </Form.Item>
           <Form.Item
           {...formItemLayout}

@@ -21,10 +21,9 @@ const instance=axios.create({
 export const postAxios=(url,params)=>{
     return new Promise((resolve,reject)=>{
         instance.post(url,params)
-        .then(
-            function(res){
+        .then((res)=>{
                 resolve(res.data)
-            },function(err){
+            },(err)=>{
                 reject(err)
             }
         )

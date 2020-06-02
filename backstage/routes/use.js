@@ -26,12 +26,15 @@ router.post('/user/checkName',async (ctx,next)=>{
 })
 router.post('/user/register',async (ctx,next)=>{
     let {username,password,email}=ctx.request.body.values;
-    console.log(username,password,email)
         let user=new User({
             username,
             password,
             email
         })
-        //user.save()
+        return user.save()
+    }).then(function(){
+        responseData.status=200;
+        responseData.msg="注册成功";
+        ctx.body=responseData;
     })
 module.exports=router;

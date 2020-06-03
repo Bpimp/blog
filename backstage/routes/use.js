@@ -19,7 +19,6 @@ router.post('/user/checkName',async (ctx,next)=>{
             ctx.body=responseData;
             return;
         }
-        responseData.code=200;
         responseData.msg="用户名可用";
         ctx.body=responseData;
     })
@@ -31,10 +30,11 @@ router.post('/user/register',async (ctx,next)=>{
             password,
             email
         })
-        return user.save()
-    }).then(function(){
-        responseData.status=200;
-        responseData.msg="注册成功";
-        ctx.body=responseData;
+        await user.save()
+        .then(user=>{
+            responseData.code=2;
+            responseData.msg="注册成功";
+            ctx.body=responseData;
+        })
     })
 module.exports=router;

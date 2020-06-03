@@ -1,5 +1,6 @@
 import React from 'react';
 //import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 import api from '../api/api';
 import {
   Form,
@@ -29,7 +30,9 @@ class Reg extends React.Component {
   onFinish = values => {
     api.register({values})
     .then(res=>{
-      console.log(res)
+      if(res.code===2){
+        this.props.history.push('/')
+      }
     })
     .catch(err=>{
       console.log(err)
@@ -49,6 +52,7 @@ class Reg extends React.Component {
       this.props.changeStatus()
   }
   render(){
+    console.log(this.props)
     return (
       <div className="mask">
         <Form
@@ -159,4 +163,4 @@ class Reg extends React.Component {
   }
 };
 
-export default Reg;
+export default withRouter(Reg);

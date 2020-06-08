@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import Mask from './mask';
 import Login from './login';
 import Reg from './reg';
+import UserLogo from './userlogo';
 
 class Nav extends React.Component{
     constructor(){
@@ -36,6 +37,13 @@ class Nav extends React.Component{
     }
     render(){
         let {showMask,isLogin}=this.state;
+        let {state}=this.props;
+        let isLogout=state?<UserLogo/>:(<>
+        <span onClick={()=>this.handleShow(true)}>登录  </span>
+        ·
+        <span onClick={()=>this.handleShow(false)}>  注册</span>  
+        {mask}
+    </>)
         const mask=showMask?(
             <Mask>
                 {isLogin?<Login changeStatus={this.changeStatus}/>:<Reg changeStatus={this.changeStatus}/>}
@@ -55,10 +63,7 @@ class Nav extends React.Component{
                     <li><Link to="/about">关于</Link></li>
                 </ul>
                 <div className="loginPopup">
-                    <span onClick={()=>this.handleShow(true)}>登录  </span>
-                    ·
-                    <span onClick={()=>this.handleShow(false)}>  注册</span>  
-                    {mask}
+                {isLogout}
                 </div>
             </div>
         </header>

@@ -6,9 +6,11 @@ import Footer from '../../components/footer';
 
 class Home extends React.Component{
     render(){
+        console.log(this.props)
+        let {state}=this.props.location;
         return (
         <>
-            <Header/>
+            <Header state={state}/>
             <main className="clear">
                 <Aside/>
                 <div className="content">

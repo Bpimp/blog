@@ -31,14 +31,13 @@ class Reg extends React.Component {
     api.register({values})
     .then(res=>{
       if(res.code===2){
-        this.props.history.push('/')
+        this.props.history.push({pathname:'/index/all',state:values.username})
       }
     })
     .catch(err=>{
       console.log(err)
     })
   };
-  
   checkName=(rule,value)=>{
     return api.checkName({value})
     .then(res=>{
@@ -51,10 +50,13 @@ class Reg extends React.Component {
   handleChange=()=>{
       this.props.changeStatus()
   }
+  test=()=>{
+    this.props.history.push({pathname:'/index/all',state:'test'})
+  }
   render(){
-    console.log(this.props)
     return (
       <div className="mask">
+        <button onClick={this.test}>click</button>
         <Form
         className="piece"
           name="register"

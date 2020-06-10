@@ -2,10 +2,11 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import api from '../api/api';
 
 const Login = (props) => {
   const onFinish = values => {
-    console.log('Received values of form: ', values);
+    api.login(values)
   };
   const handleChange=()=>{
     props.changeStatus()

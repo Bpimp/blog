@@ -50,13 +50,9 @@ class Reg extends React.Component {
   handleChange=()=>{
       this.props.changeStatus()
   }
-  test=()=>{
-    this.props.history.push({pathname:'/index/all',state:'test'})
-  }
   render(){
     return (
       <div className="mask">
-        <button onClick={this.test}>click</button>
         <Form
         className="piece"
           name="register"
@@ -108,7 +104,6 @@ class Reg extends React.Component {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-
                   return Promise.reject('两次密码不一致');
                 },
               }),

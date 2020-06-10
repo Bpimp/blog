@@ -38,12 +38,6 @@ class Nav extends React.Component{
     render(){
         let {showMask,isLogin}=this.state;
         let {state}=this.props;
-        let isLogout=state?<UserLogo/>:(<>
-        <span onClick={()=>this.handleShow(true)}>登录  </span>
-        ·
-        <span onClick={()=>this.handleShow(false)}>  注册</span>  
-        {mask}
-    </>)
         const mask=showMask?(
             <Mask>
                 {isLogin?<Login changeStatus={this.changeStatus}/>:<Reg changeStatus={this.changeStatus}/>}
@@ -53,6 +47,12 @@ class Nav extends React.Component{
                 >X</button>
             </Mask>
         ):null
+        const isLogout=state?<UserLogo/>:(<>
+        <span onClick={()=>this.handleShow(true)}>登录  </span>
+        ·
+        <span onClick={()=>this.handleShow(false)}>  注册</span>  
+        {mask}
+    </>)
         return (
             <header>
             <div id="navbox">

@@ -28,10 +28,11 @@ const formItemLayout = {
 };
 class Reg extends React.Component {
   onFinish = values => {
+    let pathname=this.props.location.pathname;
     api.register({values})
     .then(res=>{
       if(res.code===2){
-        this.props.history.push({pathname:'/index/all',state:values.username})
+        this.props.history.push({pathname,state:values.username})
       }
     })
     .catch(err=>{

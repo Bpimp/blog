@@ -7,6 +7,12 @@ import api from '../api/api';
 const Login = (props) => {
   const onFinish = values => {
     api.login(values)
+    .then(res=>{
+      sessionStorage.setItem('token',res.token)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   };
   const handleChange=()=>{
     props.changeStatus()

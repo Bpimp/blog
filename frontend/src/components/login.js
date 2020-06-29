@@ -1,14 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import api from '../api/api';
 
 const Login = (props) => {
+  let pathname=props.history.location.pathname;
   const onFinish = values => {
-    api.login(values)
+    api.login(values) 
     .then(res=>{
-      sessionStorage.setItem('token',res.token)
+      if(res.code===2){
+        sessionStorage.setItem('token',res.data.token)
+        pathname==='/login'?props.history.push('/index/all'):props.history.push(pathname)
+      }
     })
     .catch(err=>{
       console.log(err)
@@ -73,4 +77,4 @@ const Login = (props) => {
     </div>
   );
 };
-export default Login;
+export default withRouter(Login);

@@ -10,7 +10,7 @@ class Nav extends React.Component{
         super();
         this.state={
             showMask:false,
-            isLogin:null
+            isLog:null
         }
         this.handleShow=this.handleShow.bind(this);
         this.handleHide=this.handleHide.bind(this);
@@ -19,35 +19,35 @@ class Nav extends React.Component{
     handleShow(val){
         this.setState({
             showMask:true,
-            isLogin:val
+            isLog:val
         })
     }
     handleHide(val){
         this.setState({
             showMask:false,
-            isLogin:val
+            isLog:val
         })
     }
     changeStatus(){
-        let {isLogin}=this.state;
-        isLogin=!isLogin;
+        let {isLog}=this.state;
+        isLog=!isLog;
         this.setState({
-            isLogin
+            isLog
         })
     }
     render(){
-        let {showMask,isLogin}=this.state;
-        let {state}=this.props;
+        let {showMask,isLog}=this.state;
+        let user=window.sessionStorage.getItem('token')
         const mask=showMask?(
             <Mask>
-                {isLogin?<Login changeStatus={this.changeStatus}/>:<Reg changeStatus={this.changeStatus}/>}
+                {isLog?<Login changeStatus={this.changeStatus}/>:<Reg changeStatus={this.changeStatus}/>}
                 <button 
                     className="cancel"
                     onClick={this.handleHide}    
                 >X</button>
             </Mask>
         ):null
-        const isLogout=state?<UserLogo/>:(<>
+        const isLogout=user?<UserLogo/>:(<>
         <span onClick={()=>this.handleShow(true)}>登录  </span>
         ·
         <span onClick={()=>this.handleShow(false)}>  注册</span>  

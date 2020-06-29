@@ -1,5 +1,4 @@
 import React from 'react';
-//import axios from 'axios';
 import {withRouter} from 'react-router-dom';
 import api from '../api/api';
 import {
@@ -28,11 +27,13 @@ const formItemLayout = {
 };
 class Reg extends React.Component {
   onFinish = values => {
-    let pathname=this.props.location.pathname;
+    let pathname=this.props.history.location.pathname;
     api.register({values})
     .then(res=>{
       if(res.code===2){
-        this.props.history.push({pathname,state:values.username})
+        sessionStorage.setItem('token',res.data.token)
+        pathname==='/login'?this.props.history.push('/index/all'):this.props.history.push(pathname)
+
       }
     })
     .catch(err=>{

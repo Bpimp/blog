@@ -63,9 +63,6 @@ export default{
         return postAxios('/user/login',params)
     },
     /*退出*/
-    logout(){
-        return postAxios('/user/logout')
-    },
 
     /*
     后台管理界面接口

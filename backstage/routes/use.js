@@ -8,7 +8,8 @@ let responseData;
 router.use(async (ctx,next)=>{
     responseData={
         code:0,
-        msg:''
+        msg:'',
+        data:{}
     }
     await next();
 })
@@ -22,6 +23,7 @@ router.post('/user/checkName',async (ctx,next)=>{
             ctx.body=responseData;
             return;
         }
+        responseData.code=2;
         responseData.msg="用户名可用";
         ctx.body=responseData;  
     })
@@ -38,26 +40,31 @@ router.post('/user/register',async (ctx,next)=>{
         .then(user=>{
             responseData.code=2;
             responseData.msg="注册成功";
+            const token=sign({username,},'testkey');
+            responseData.data.token=token;
             ctx.body=responseData;
         })
     })
     router.post('/user/login',async(ctx,next)=>{
         let {username,password}=ctx.request.body;
-        await User.findOne({username,password:Encryption(password,username)},(err,doc)=>{
+        password=Encryption(password,username);
+        await User.findOne({username,password},(err,doc)=>{
             if(err){
                 responseData.code=1;
                 responseData.msg="服务器异常";
                 ctx.body=responseData;
+                return;
             }
             if(!doc){
                 responseData.code=1;
                 responseData.msg="用户名或密码错误";
                 ctx.body=responseData;
+                return;
             }
-            const token=sign({username},'testkey');
+            const token=sign({username,},'testkey');
             responseData.code=2;
             responseData.msg="登录成功";
-            responseData.token=token;
+            responseData.data.token=token;
             ctx.body=responseData
         })
     })

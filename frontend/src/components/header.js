@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import Mask from './mask';
 import Login from './login';
 import Reg from './reg';
@@ -36,6 +37,7 @@ class Nav extends React.Component{
         })
     }
     render(){
+        console.log(this.props)
         let {showMask,isLog}=this.state;
         let user=window.sessionStorage.getItem('token')
         const mask=showMask?(
@@ -70,4 +72,6 @@ class Nav extends React.Component{
         )
     }
 }
-export default Nav;
+export default connect(
+    state=>state.user
+)(Nav);

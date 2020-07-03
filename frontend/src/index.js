@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
-import * as serviceWorker from './serviceWorker';
+import {Provider} from 'react-redux';
+import {createStore,applyMiddleware} from 'redux';
+import reducers from './reducers';
 import RouterIndex from './routes';
 import './index.css';
 
+let store=createStore(reducers);  
 ReactDOM.render(
-  <BrowserRouter>
-    <div className="App">
-      <RouterIndex/>
-    </div>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <div className="App">
+        <RouterIndex/>
+      </div>
+    </BrowserRouter>
+  </Provider>
     ,
   document.getElementById('root')
 );
 
-serviceWorker.unregister();

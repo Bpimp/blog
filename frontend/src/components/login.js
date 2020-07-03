@@ -1,17 +1,18 @@
 import React from 'react';
 import {Link,withRouter} from 'react-router-dom';
+import {connect} from 'react-redux'; 
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import api from '../api/api';
 
 const Login = (props) => {
-  let pathname=props.history.location.pathname;
+  //let pathname=props.history.location.pathname;
   const onFinish = values => {
     api.login(values) 
     .then(res=>{
       if(res.code===2){
         sessionStorage.setItem('token',res.data.token)
-        pathname==='/login'?props.history.push('/index/all'):props.history.push(pathname)
+        //pathname==='/login'?props.history.push('/index/all'):props.history.push(pathname)
       }
     })
     .catch(err=>{
@@ -19,7 +20,12 @@ const Login = (props) => {
     })
   };
   const handleChange=()=>{
-    props.changeStatus()
+    props.dispatch(dispatch=>{
+      dispatch({
+        type:'TO_LOG',
+        isLog:true
+      })
+    })
   }
   return (
     <div className="mask">
@@ -77,4 +83,4 @@ const Login = (props) => {
     </div>
   );
 };
-export default withRouter(Login);
+export default connect(state=>state.user)(Login);

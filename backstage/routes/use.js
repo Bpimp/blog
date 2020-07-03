@@ -9,7 +9,9 @@ router.use(async (ctx,next)=>{
     responseData={
         code:0,
         msg:'',
-        data:{}
+        data:{
+            isAdmin:false
+        }
     }
     await next();
 })
@@ -61,7 +63,10 @@ router.post('/user/register',async (ctx,next)=>{
                 ctx.body=responseData;
                 return;
             }
-            const token=sign({username,},'testkey');
+            if(doc.isAdmin){
+                responseData.data.isAdmin=doc.isAdmin
+            }
+            const token=sign({username},'testkey');
             responseData.code=2;
             responseData.msg="登录成功";
             responseData.data.token=token;

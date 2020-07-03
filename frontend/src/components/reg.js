@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import api from '../api/api';
 import {
   Form,
@@ -27,12 +28,12 @@ const formItemLayout = {
 };
 class Reg extends React.Component {
   onFinish = values => {
-    let pathname=this.props.history.location.pathname;
+    //let pathname=this.props.history.location.pathname;
     api.register({values})
     .then(res=>{
       if(res.code===2){
         sessionStorage.setItem('token',res.data.token)
-        pathname==='/login'?this.props.history.push('/index/all'):this.props.history.push(pathname)
+        //pathname==='/login'?this.props.history.push('/index/all'):this.props.history.push(pathname)
 
       }
     })
@@ -49,8 +50,13 @@ class Reg extends React.Component {
       return Promise.resolve("")
     })
   }
-  handleChange=()=>{
-      this.props.changeStatus()
+  toreg=()=>{
+      this.props.dispatch(dispatch=>{
+        dispatch({
+          type:'TO_LOG',
+          isLog:false
+        })
+      })
   }
   render(){
     return (
@@ -154,7 +160,7 @@ class Reg extends React.Component {
             <Button type="primary" htmlType="submit" className="register-form-button">
               注册
             </Button>
-            Or <button className="isLogin" onClick={this.handleChange}>login now!</button>
+            Or <button className="isLogin" onClick={this.toreg}>login now!</button>
           </Form.Item>
         </Form>
       </div>
@@ -162,4 +168,4 @@ class Reg extends React.Component {
   }
 };
 
-export default withRouter(Reg);
+export default connect(state=>state.user)(Reg);

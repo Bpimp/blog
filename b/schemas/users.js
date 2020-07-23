@@ -18,8 +18,8 @@ let UserSchema=new mongoose.Schema({
         required:true
     },
     isAdmin:{
-        type:Boolean,
-        default:false
+        type:String,
+        default:''
     }
 })
 module.exports=mongoose.model('User',UserSchema);

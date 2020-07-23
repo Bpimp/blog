@@ -16,11 +16,11 @@ class Aside extends React.Component{
                 <div id="tag" className="piece">
                     <h3 className="title">标签</h3>
                     <ul className="tagList clear">
-                        <li><Link to="/index/javaScript">javaScript</Link></li>
-                        <li><Link to="/index/CSS">CSS</Link></li>
-                        <li><Link to="/index/node">node</Link></li>
-                        <li><Link to="/index/react">react</Link></li>
-                        <li><Link to="/index/vue">vue</Link></li>
+                        <li><Link to="/type/javaScript">javaScript</Link></li>
+                        <li><Link to="/type/CSS">CSS</Link></li>
+                        <li><Link to="/type/node">node</Link></li>
+                        <li><Link to="/type/react">react</Link></li>
+                        <li><Link to="/type/vue">vue</Link></li>
                     </ul>
                 </div>
             </aside>

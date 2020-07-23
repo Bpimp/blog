@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import api from '../api/api';
+import api from '../../api/api';
 import {
   Form,
   Input,
@@ -32,8 +32,8 @@ class Reg extends React.Component {
     api.register({values})
     .then(res=>{
       if(res.code===2){
-        sessionStorage.setItem('token',res.data.token)
-        pathname==='/login'?this.props.history.push('/'):this.history.history.go(0)
+        sessionStorage.setItem('token',res.token)
+        pathname==='/login'?this.props.history.push('/'):this.props.history.go(0)
       }
     })
     .catch(err=>{

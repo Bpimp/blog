@@ -3,7 +3,7 @@ import {Link,withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'; 
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import api from '../api/api';
+import api from '../../api/api';
 
 const Login = (props) => {
   const onFinish = values => {
@@ -11,8 +11,8 @@ const Login = (props) => {
     api.login(values) 
     .then(res=>{
       if(res.code===2){
-        sessionStorage.setItem('token',res.data.token)
-        sessionStorage.setItem('isAdmin',res.data.isAdmin)
+        sessionStorage.setItem('token',res.token)
+        sessionStorage.setItem('isAdmin',res.isAdmin)
         pathname==='/login'?props.history.push('/'):props.history.go(0)
       }
       console.log(res.msg)

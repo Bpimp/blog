@@ -8,8 +8,7 @@ class UserLogo extends React.Component{
         this.props.history.go(0)
     }
     render(){
-        const isAdmin=window.sessionStorage.getItem('isAdmin')
-        console.log(isAdmin)
+        const isAdmin=Boolean(window.sessionStorage.getItem('isAdmin'));
         const menu=(
             <Menu>
                 {isAdmin?(

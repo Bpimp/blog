@@ -1,14 +1,10 @@
 import React from 'react';
 import {Timeline} from 'antd';
-import Aside from '../../components/sidebar/index';
-import Header from '../../components/header';
-import Footer from '../../components/footer';
+import Aside from '../../components/main/sidebar/index';
 
 class TimeLine extends React.Component{
     render(){
         return (
-            <>
-                <Header/>
                 <main className="clear">
                     <Aside/>
                     <div className="content">
@@ -20,8 +16,6 @@ class TimeLine extends React.Component{
                         </Timeline>
                     </div>
                 </main>
-                <Footer/>
-            </>
         )
     }
 }

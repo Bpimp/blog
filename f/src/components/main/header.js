@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Mask from './mask';
 import Login from './login';
@@ -21,7 +21,6 @@ class Nav extends React.Component{
                     isLog:true,
                     showMask:true
                 }
-                
             })
         })
     }
@@ -45,7 +44,10 @@ class Nav extends React.Component{
         })
     }
     render(){
-        let {showMask,isLog}=this.props;
+        console.log(this.props)
+        let navitem=[{val:'首页',path:'/index/all'},{val:'时间轴',path:'/time'},{val:'关于',path:'/about'}];
+        let {showMask,isLog,location:{pathname}}=this.props;
+        console.log(pathname)
         let user=window.sessionStorage.getItem('token')
         const mask=showMask?(
             <Mask>
@@ -60,25 +62,29 @@ class Nav extends React.Component{
         <span onClick={this.tolog}>登录  </span>
         ·
         <span onClick={this.toreg}>  注册</span>  
-        {mask}
     </>)
         return (
             <header>
-            <div id="navbox">
-                <Link className="logo" to="/">{/* <img src="./image/logo.png" alt="weng"/> */}</Link>
-                <ul id='nav'>
-                    <li><Link to="/">首页</Link></li>
-                    <li><Link to="/time">时间轴</Link></li>
-                    <li><Link to="/about">关于</Link></li>
-                </ul>
-                <div className="loginPopup">
-                {isLogout}
+                <div id="navbox"
+                >
+                    <Link className="logo" to="/">{/* <img src="./image/logo.png" alt="weng"/> */}</Link>
+                    <ul id='nav'>
+                        {navitem.map(item=>(
+                            <li 
+                                key={item.path}
+                                className={pathname===item.path?'active':''}
+                            >
+                                <Link to={item.path}>{item.val}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="loginPopup">
+                    {isLogout}
+                    {mask}
+                    </div>
                 </div>
-            </div>
-        </header>
+            </header>
         )
     }
 }
-export default connect(
-    state=>state.user
-)(Nav);
+export default withRouter(connect(state=>state.user)(Nav));

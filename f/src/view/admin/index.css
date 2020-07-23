@@ -1,8 +1,21 @@
+/* admin header*/
+#admin header{
+    background:rgba(28, 160, 236, 0.986);
+}
+header .logo{
+    margin-left:20px;
+}
 #admin .navigation{
     width:256px;
-    display: flex;
     min-height:100vh;
+    padding-top:10px;
     float: left;
+}
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background: grey;
+}
+.ant-menu.ant-menu-dark .ant-menu-item-selected{
+    background: grey;
 }
 .admin-content{
     margin-left:256px;

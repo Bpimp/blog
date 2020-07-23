@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Login from '../components/login';
-import Reg from '../components/reg';
+import Login from '../components/main/login';
+import Reg from '../components/main/reg';
 
 const LoginPage=(props)=>{
         let {isLog}=props;

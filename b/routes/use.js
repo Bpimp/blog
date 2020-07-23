@@ -8,10 +8,7 @@ let responseData;
 router.use(async (ctx,next)=>{
     responseData={
         code:0,
-        msg:'',
-        data:{
-            isAdmin:false
-        }
+        msg:''
     }
     await next();
 })
@@ -43,7 +40,7 @@ router.post('/user/register',async (ctx,next)=>{
             responseData.code=2;
             responseData.msg="注册成功";
             const token=sign({username,},'testkey');
-            responseData.data.token=token;
+            responseData.token=token;
             ctx.body=responseData;
         })
     })
@@ -66,8 +63,8 @@ router.post('/user/register',async (ctx,next)=>{
             const token=sign({username},'testkey');
             responseData.code=2;
             responseData.msg="登录成功";
-            responseData.data.isAdmin=doc.isAdmin
-            responseData.data.token=token;
+            responseData.isAdmin=doc.isAdmin;
+            responseData.token=token;
             ctx.body=responseData
         })
     })

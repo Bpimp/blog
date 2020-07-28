@@ -44,10 +44,8 @@ class Nav extends React.Component{
         })
     }
     render(){
-        console.log(this.props)
         let navitem=[{val:'首页',path:'/index/all'},{val:'时间轴',path:'/time'},{val:'关于',path:'/about'}];
         let {showMask,isLog,location:{pathname}}=this.props;
-        console.log(pathname)
         let user=window.sessionStorage.getItem('token')
         const mask=showMask?(
             <Mask>

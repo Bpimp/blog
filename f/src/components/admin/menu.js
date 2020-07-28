@@ -1,5 +1,6 @@
 import React from 'react';
 import {Menu} from 'antd';
+import {Link} from 'react-router-dom';
 import {
     HomeOutlined,
     DesktopOutlined,
@@ -17,13 +18,13 @@ import {
             theme="dark"
           >
             <Menu.Item key="1" icon={<HomeOutlined />}>
-               首页
+               <Link to='/admin'>首页</Link>
             </Menu.Item>
             <Menu.Item key="2" icon={<DesktopOutlined />}>
-              用户
+            <Link to='/admin/user'>用户</Link>
             </Menu.Item>
             <Menu.Item key="3" icon={<ContainerOutlined />}>
-              文章
+            <Link to='/admin/article'>文章</Link>
             </Menu.Item>
             <Menu.Item key="4" icon={<ContainerOutlined />}>
               Option 3

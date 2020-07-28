@@ -1,17 +1,23 @@
 import React from 'react';
 import Navigation from '../../components/admin/menu';
 import AdminNav from '../../components/admin/nav';
+import AdminRoute from '../../routes/admin';
+import Error from './error';
 import './index.css';
 
 class Admin extends React.Component{
     render(){
+        const isAdmin=sessionStorage.getItem('isAdmin');
         return (
             <div id="admin">
-                <AdminNav/>
-                <div>
-                    <Navigation/>
-                    <div className="admin-content">后台管理页面</div>
-                </div>
+                {isAdmin?(
+                <>
+                    <AdminNav/>
+                    <div>
+                        <Navigation/>
+                        <AdminRoute/>
+                    </div>
+                </>):<Error/>}
             </div>
         )
     }

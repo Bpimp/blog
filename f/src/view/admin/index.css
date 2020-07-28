@@ -5,6 +5,12 @@
 header .logo{
     margin-left:20px;
 }
+header .add{
+    font: normal normal 14px/50px "微软雅黑";
+    color: #fff;
+    float: right;
+    margin-right: 40px;
+}
 #admin .navigation{
     width:256px;
     min-height:100vh;

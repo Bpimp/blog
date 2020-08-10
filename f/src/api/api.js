@@ -50,24 +50,31 @@ export const getAxios=(url,params)=>{
 }
 
 export default{
-    /*注册 */
+    //注册 
     register(params){
         return postAxios('/user/register',params)
     },
-    /*验证用户名*/
+    //验证用户名
     checkName(params){
         return postAxios('/user/checkName',params)
     },
-    /*登录 */
+    //登录 
     login(params){
         return postAxios('/user/login',params)
     },
-    /*退出*/
-
     /*
     后台管理界面接口
-    获取用户列表*/
+    获取用户列表
+    */
     getUserList(){
         return getAxios('/admin/userlist')
+    },
+    //检测文章标题
+    checkArticleName(params){
+        return postAxios('/admin/article/checkname',params)
+    },
+    //添加文章
+    addArticle(params){
+        return postAxios('/admin/article/add',params)
     }
 }

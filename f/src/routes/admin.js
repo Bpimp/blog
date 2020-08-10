@@ -3,7 +3,7 @@ import {Route,Switch} from 'react-router-dom';
 import Home from '../view/admin/home';
 import User from '../view/admin/user';
 import Article from '../view/admin/article';
-import AddArticle from '../view/admin/add';
+import MdEditor from '../view/admin/editor';
 
 class AdminRoute extends React.Component{
     render(){
@@ -12,7 +12,7 @@ class AdminRoute extends React.Component{
                 <Route path="/admin" exact component={Home}/>
                 <Route path="/admin/user" component={User}/>
                 <Route path="/admin/article" component={Article}/>
-                <Route path="/admin/add" component={AddArticle}/>
+                <Route path="/admin/editor" component={MdEditor}/>
             </Switch>
         )
     }

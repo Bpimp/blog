@@ -1,3 +1,4 @@
+
 /* admin header*/
 #admin header{
     background:rgba(28, 160, 236, 0.986);
@@ -25,5 +26,28 @@ header .add{
 }
 .admin-content{
     margin-left:256px;
-    padding:20px;
+    padding:20px; 
+}
+.editor{
+    position: relative;
+    top:0;
+    left:0;
+    z-index: 9999;
+}
+.editor .title{
+    border:none;
+    height:40px;
+    width:100%;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    margin:0;
+}
+.editor .ant-form-item{
+    margin:0;
+}
+.editor input::placeholder{
+    font-size:20px;
+    color:grey;
+     
 }

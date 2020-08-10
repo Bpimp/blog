@@ -1,5 +1,5 @@
 /* reset */
-body,ul,li,h2,h3,p,a,button{
+body,ul,li,h2,h3,p,a,button,input{
   margin:0;
   padding:0;
 }

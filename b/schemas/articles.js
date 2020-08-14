@@ -5,9 +5,6 @@ let ArticleSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    introduction:{
-        type:String
-    },
     create_time:{
         type:Date,
         default:Date.now

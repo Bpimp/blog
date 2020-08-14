@@ -76,5 +76,9 @@ export default{
     //添加文章
     addArticle(params){
         return postAxios('/admin/article/add',params)
+    },
+    //获取文章分类
+    getTab(){
+        return getAxios('/admin/getTab')
     }
 }

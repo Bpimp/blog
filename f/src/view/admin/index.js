@@ -13,10 +13,8 @@ class Admin extends React.Component{
                 {isAdmin?(
                 <>
                     <AdminNav/>
-                    <div>
-                        <Navigation/>
-                        <AdminRoute/>
-                    </div>
+                    <Navigation/>
+                    <AdminRoute/>
                 </>):<Error/>}
             </div>
         )

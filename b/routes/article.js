@@ -27,26 +27,15 @@ router.post('/admin/article/checkname',async (ctx,next)=>{
     })
 })
 router.post('/admin/article/add',async (ctx,next)=>{
-    let {tab,title,content}=ctx.request.body.value;
+    let {tab,title,content}=ctx.request.body.values;
     const addTab=()=>new Promise((resolve,reject)=>{
-        Tab.update({tab},{amount:amount+1},(err,raw)=>{
+        const options= {upsert:true,new:true,setDefaultsOnInsert:true,useFindAndModify:false}
+        Tab.findOneAndUpdate({tab},{$inc:{amount:1}},options,function(err,res){
             if(err){
-                reject('服务器错误')
+                reject(err)
                 return ;
             }
             resolve()
-            return ;
-        })
-        let tab=new Tab({
-            tab
-        })
-        tab.save()
-        .then(res=>{
-            resolve()
-            return ;
-        })
-        .catch(err=>{
-            reject(err)
         })
     })
     const addArticle=()=>new Promise((resolve,reject)=>{

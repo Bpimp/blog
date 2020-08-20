@@ -1,15 +1,36 @@
 import React from 'react';
-import {Form,Input,Button,Select} from 'antd';
+import {withRouter} from 'react-router-dom';
+import {Form,Input,Button,Select,Divider,message } from 'antd';
 import Editor from 'for-editor';
+import { PlusOutlined } from '@ant-design/icons';
 import api from '../../api/api';
 
+const {Option}=Select;
+const info = () => {
+    message.success({
+      content: '添加成功'
+    });
+  };
 class MdEditor extends React.Component{
     constructor(){
         super();
         this.state={
             value:'',
-            tab:[]
+            name:'',
+            tabs:[]
         }
+    }
+    onNameChange=event=>{
+        this.setState({
+            name:event.target.value
+        })
+    }
+    addTab=()=>{
+        const{name,tabs}=this.state;
+        this.setState({
+            tabs:[...tabs,{tab:name}],
+            name:''
+        })
     }
     handleChange=value=>{
         this.setState({value})
@@ -19,6 +40,14 @@ class MdEditor extends React.Component{
         .then(res=>{
             if(res.code===2){
                 api.addArticle({values})
+                .then(res=>{
+                   if(res.code===2){
+                    info()
+                   }
+                })
+            }
+            else{
+                alert('标题重复')
             }
         })
         .catch(err=>{
@@ -28,19 +57,41 @@ class MdEditor extends React.Component{
     componentDidMount(){
         api.getTab()
         .then(res=>{
-            console.log(res)
+            this.setState({
+                tabs:res.data
+            })
         })
     }
     render(){
+        let {name,tabs,value}=this.state;
+        console.log(value,tabs)
         return (
             <div className="editor">
                 <Form
                     onFinish={this.onFinish}
                 >
                     <Form.Item className="select" name="tab">
-                        <Select placeholder="分类" bordered={false}>
-                            <Select.Option value="demo">Demo</Select.Option>
-                        </Select>
+                    <Select 
+                        placeholder="分类" 
+                        bordered={false}
+                        dropdownClassName="drop"
+                        dropdownRender={menu=>(
+                            <div>
+                                {menu}
+                                <Divider style={{margin:'4px 0'}}/>
+                                <div style={{display:'flex',padding:8}}>
+                                    <Input style={{flex:'auto'}} value={name} onChange={this.onNameChange}/>
+                                    <span style={{flex:'none',padding:'8px',display:'block',cursor:'pointer',color:'#007FFF'}} onClick={this.addTab}>
+                                        <PlusOutlined/>Add item
+                                    </span>    
+                                </div>
+                            </div>
+                        )}
+                    >
+                        {tabs.map(item=>(
+                            <Option value={item.tab} key={item.tab}>{item.tab}</Option>
+                        ))}
+                    </Select>
                     </Form.Item>
                     <Form.Item className="submit">
                         <Button htmlType="Submit">发布</Button>
@@ -61,7 +112,7 @@ class MdEditor extends React.Component{
                     >
                         <Editor
                             style={{borderRadius:0,height:'706px'}}
-                            value={this.state.value}
+                            value={value}
                             onChange={this.handleChange}
                         />
                     </Form.Item>
@@ -70,4 +121,4 @@ class MdEditor extends React.Component{
         )
     }
 }
-export default MdEditor;
+export default withRouter(MdEditor);

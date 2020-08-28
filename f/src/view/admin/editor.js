@@ -6,11 +6,6 @@ import { PlusOutlined } from '@ant-design/icons';
 import api from '../../api/api';
 
 const {Option}=Select;
-const info = () => {
-    message.success({
-      content: '添加成功'
-    });
-  };
 class MdEditor extends React.Component{
     constructor(){
         super();
@@ -42,7 +37,9 @@ class MdEditor extends React.Component{
                 api.addArticle({values})
                 .then(res=>{
                    if(res.code===2){
-                    info()
+                    message.success('添加成功',2).then(()=>{
+                        this.props.history.push('/admin')
+                    })
                    }
                 })
             }
@@ -55,7 +52,7 @@ class MdEditor extends React.Component{
         })
     }
     componentDidMount(){
-        api.getTab()
+        api.getCategory()
         .then(res=>{
             this.setState({
                 tabs:res.data
@@ -64,7 +61,6 @@ class MdEditor extends React.Component{
     }
     render(){
         let {name,tabs,value}=this.state;
-        console.log(value,tabs)
         return (
             <div className="editor">
                 <Form
@@ -114,7 +110,7 @@ class MdEditor extends React.Component{
                             style={{borderRadius:0,height:'706px'}}
                             value={value}
                             onChange={this.handleChange}
-                        />
+                        /> 
                     </Form.Item>
                 </Form>
             </div>

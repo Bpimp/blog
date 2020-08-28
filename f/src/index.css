@@ -12,7 +12,7 @@ button{
   display: block;
   clear: both;
 }
-li{
+header li,aside li{
   list-style: none;
 }
 a{
@@ -22,7 +22,6 @@ a{
 h2,h3{
   font-weight: normal;
 }
-
 /* public */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -32,7 +31,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size:16px;
   color:#434343;
-  background:#eee;
+  background:rgb(244,245,245);
 }
 .App{
   display: flex;
@@ -133,6 +132,9 @@ main{
 /* content */
 .content{
   margin-right:298px;
+  background: #fff;
+  box-shadow: 0 0 1px 1px #ddd;
+  padding:25px;
 }
 .article-list{
   background: #fff;
@@ -140,6 +142,24 @@ main{
   border-radius: 5px;
   box-shadow: 4px 4px 3px 2px #ddd;
   margin-bottom:20px;
+}
+.detail table{
+  width:100%;
+  border-bottom:1px solid rgb(223,226,229);
+  border-right:1px solid rgb(223,226,229);
+}
+.detail table td,th{
+  text-align: center;
+  border-top:1px solid rgb(223,226,229);
+  border-left:1px solid rgb(223,226,229);
+}
+.detail li{
+  margin-left:20px;
+}
+.detail pre{
+  display: block;
+  border:1px solid rgb(223,226,229);
+  padding:10px 5px;
 }
 /* aside */
 aside{

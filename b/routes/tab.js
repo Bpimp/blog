@@ -9,7 +9,7 @@ router.use(async (ctx,next)=>{
     }
     await next();
 })
-router.get('/admin/getTab',async (ctx,next)=>{
+router.get('/getCategory',async (ctx,next)=>{
     await Tab.find({},{tab:true})
     .then(res=>{
         responseData.code=2;

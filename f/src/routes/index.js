@@ -17,7 +17,7 @@ class RouterIndex extends React.Component{
                 <Route path="/index/:id" component={Home}/>
                 <Route path="/time" component={TimeLine}/>
                 <Route path="/about" component={About}/>
-                <Route path="/content" component={Content}/>
+                <Route path="/content/:id" component={Content}/>
                 <Route path="/login" component={Login}/>
                 <Route component={NotFound}/>
             </Switch>

@@ -50,6 +50,20 @@ export const getAxios=(url,params)=>{
 }
 
 export default{
+    //公共接口
+    //获取文章分类
+    getCategory(){
+        return getAxios('/getCategory')
+    },
+    //获取文章列表
+    getData(params){
+        return getAxios(`/article?tab=${params}`)
+    },
+    //获取文章内容
+    getDetails(params){
+        return getAxios(`/content?id=${params}`)
+    },
+    //前端页面接口
     //注册 
     register(params){
         return postAxios('/user/register',params)
@@ -62,6 +76,7 @@ export default{
     login(params){
         return postAxios('/user/login',params)
     },
+    
     /*
     后台管理界面接口
     获取用户列表
@@ -77,8 +92,5 @@ export default{
     addArticle(params){
         return postAxios('/admin/article/add',params)
     },
-    //获取文章分类
-    getTab(){
-        return getAxios('/admin/getTab')
-    }
+    
 }

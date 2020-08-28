@@ -11,6 +11,30 @@ router.use(async (ctx,next)=>{
     await next()
 })
 
+router.get('/article',async (ctx,next)=>{
+    const tab=ctx.request.query.tab;
+    const conditions=tab==='all'?{}:{tab};
+    await Article.find(conditions,{'_id':1,'tab':1,'title':1,'create_time':1})
+    .then(article=>{
+        responseData.code=2;
+        responseData.msg='success'
+        responseData.data=article;
+        ctx.body=responseData;
+    })
+})
+router.get('/content',async(ctx,next)=>{
+    const id=ctx.request.query.id;
+    await Article.findById(id)
+    .then(res=>{
+        responseData.code=2;
+        responseData.msg='success';
+        responseData.data=res;
+        ctx.body=responseData;
+    })
+    .catch(err=>{
+        ctx.body=err
+    })
+})
 router.post('/admin/article/checkname',async (ctx,next)=>{
     const title=ctx.request.body.title;
     await Article.findOne({title})

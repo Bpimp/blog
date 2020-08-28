@@ -1,8 +1,24 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-
+import api from '../../../api/api';
+import Tag from './tag';
+import Record from './record';
 class Aside extends React.Component{
+    constructor(){
+        super()
+        this.state={
+            categories:[]
+        }
+    }
+    componentDidMount(){
+        api.getCategory()
+        .then(res=>{
+            this.setState({
+                categories:res.data
+            })
+        })
+    }
     render(){
+        const {categories}=this.state;
         return (
             <aside>
                 <div id="intro" className="piece">
@@ -13,16 +29,8 @@ class Aside extends React.Component{
                         <li className="ellipsis">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</li>
                     </ul>
                 </div>
-                <div id="tag" className="piece">
-                    <h3 className="title">标签</h3>
-                    <ul className="tagList clear">
-                        <li><Link to="/type/javaScript">javaScript</Link></li>
-                        <li><Link to="/type/CSS">CSS</Link></li>
-                        <li><Link to="/type/node">node</Link></li>
-                        <li><Link to="/type/react">react</Link></li>
-                        <li><Link to="/type/vue">vue</Link></li>
-                    </ul>
-                </div>
+                <Tag categories={categories}/>
+                <Record/>
             </aside>
         )
     }

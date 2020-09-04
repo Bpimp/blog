@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Link,withRouter} from 'react-router-dom';
 import {connect} from 'react-redux'; 
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox,Spin } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import api from '../../api/api';
 
 const Login = (props) => {
+  const [loading,isLoading]=useState(false);
   const onFinish = values => {
     const {pathname}=props.history.location;
     api.login(values) 
@@ -13,9 +14,10 @@ const Login = (props) => {
       if(res.code===2){
         sessionStorage.setItem('token',res.token)
         sessionStorage.setItem('isAdmin',res.isAdmin)
+        sessionStorage.setItem('author',values.username)
+        isLoading(true)
         pathname==='/login'?props.history.push('/'):props.history.go(0)
       }
-      console.log(res.msg)
     })
     .catch(err=>{
       console.log(err)
@@ -80,6 +82,7 @@ const Login = (props) => {
         <Form.Item>
           <Button type="primary" htmlType="submit" className="login-form-button">
             登录
+            {loading?<Spin/>:''}
           </Button>
           Or <span className="isLogin" onClick={toreg}>register now!</span>
         </Form.Item>

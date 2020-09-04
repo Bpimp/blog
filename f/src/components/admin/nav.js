@@ -6,7 +6,7 @@ class AdminNav extends React.Component{
         return (
             <header>
                 <img className='logo' src={require('../../img/logo.png')} alt='weng'/>
-                <Link className='add' to="/admin/editor">写文章</Link>
+                <Link className='add' to="/admin/editor">写文章</Link> 
             </header>
         )
     }

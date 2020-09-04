@@ -5,6 +5,7 @@ import Aside from '../../components/main/sidebar/index';
 import api from '../../api/api';
 import {Spin} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import CodeBlock from '../../components/CodeBlock';
 
 const antIcon=<LoadingOutlined style={{ fontSize: 24 }} spin />;
 class Content extends React.Component{
@@ -35,20 +36,21 @@ class Content extends React.Component{
     render(){
         const {data,loading}=this.props;
         return (
-            <>
-                {loading&&<Spin indicator={antIcon}/>}
-                    <main className="clear">
-                        <Aside/>
-                        <div className='content'>
-                            <h1>{data.title}</h1>
-                            创建时间：<span>{data.create_time.split('T')[0]}</span>
-                            <ReactMarkdown 
-                                className="detail"
-                                source={data.content}
-                            />
-                        </div>
-                    </main>
-            </>
+                <main className="clear">
+                    <Aside/>
+                    <div className='content'>
+                       {loading&&<Spin className="loading" indicator={antIcon}/>}
+                        <h1>{data.title}</h1>
+                        创建时间：<span>{data.create_time.split('T')[0]}</span>
+                        <ReactMarkdown 
+                            className="detail"
+                            source={data.content}
+                            renderers={{
+                                code:CodeBlock
+                            }}
+                        />
+                    </div>
+                </main>
         )
     }
 }

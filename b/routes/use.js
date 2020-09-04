@@ -12,6 +12,15 @@ router.use(async (ctx,next)=>{
     }
     await next();
 })
+router.get('/admin/user',async (ctx,next)=>{
+    await User.find()
+    .then(user=>{
+        responseData.code=2;
+        responseData.msg='success';
+        responseData.data=user;
+        ctx.body=responseData
+    })
+})
 router.post('/user/checkName',async (ctx,next)=>{
     let username=ctx.request.body.value;
     await User.findOne({username})
@@ -44,28 +53,37 @@ router.post('/user/register',async (ctx,next)=>{
             ctx.body=responseData;
         })
     })
-    router.post('/user/login',async(ctx,next)=>{
-        let {username,password}=ctx.request.body;
-        password=Encryption(password,username);
-        await User.findOne({username,password},(err,doc)=>{
-            if(err){
-                responseData.code=1;
-                responseData.msg="服务器异常";
-                ctx.body=responseData;
-                return;
-            }
-            if(!doc){
-                responseData.code=1;
-                responseData.msg="用户名或密码错误";
-                ctx.body=responseData;
-                return;
-            } 
-            const token=sign({username},'testkey');
-            responseData.code=2;
-            responseData.msg="登录成功";
-            responseData.isAdmin=doc.isAdmin;
-            responseData.token=token;
-            ctx.body=responseData
-        })
+router.post('/user/login',async(ctx,next)=>{
+    let {username,password}=ctx.request.body;
+    password=Encryption(password,username);
+    await User.findOne({username,password},(err,doc)=>{
+        if(err){
+            responseData.code=1;
+            responseData.msg="服务器异常";
+            ctx.body=responseData;
+            return;
+        }
+        if(!doc){
+            responseData.code=1;
+            responseData.msg="用户名或密码错误";
+            ctx.body=responseData;
+            return;
+        } 
+        const token=sign({username},'testkey');
+        responseData.code=2;
+        responseData.msg="登录成功";
+        responseData.isAdmin=doc.isAdmin;
+        responseData.token=token;
+        ctx.body=responseData
     })
+})
+router.delete('/delete/user',async(ctx,next)=>{
+    const {id}=ctx.request.body.params;
+    await User.deleteOne({_id:id})
+    .then(res=>{
+        responseData.code=3;
+        responseData.msg='success';
+        ctx.body=responseData;
+    })
+})
 module.exports=router;

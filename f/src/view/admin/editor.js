@@ -33,6 +33,9 @@ class MdEditor extends React.Component{
     onFinish=values=>{
         api.checkArticleName({title:values.title})
         .then(res=>{
+            const author=sessionStorage.getItem('author');
+            values=Object.assign({},values,{author})
+            console.log(values)
             if(res.code===2){
                 api.addArticle({values})
                 .then(res=>{

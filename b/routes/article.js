@@ -14,10 +14,10 @@ router.use(async (ctx,next)=>{
 router.get('/article',async (ctx,next)=>{
     const tab=ctx.request.query.tab;
     const conditions=tab==='all'?{}:{tab};
-    await Article.find(conditions,{'_id':1,'tab':1,'title':1,'create_time':1})
+    await Article.find(conditions,{'_id':1,'tab':1,'title':1,'create_time':1,'author':1},{sort:{create_time:-1}})
     .then(article=>{
         responseData.code=2;
-        responseData.msg='success'
+        responseData.msg='success';
         responseData.data=article;
         ctx.body=responseData;
     })
@@ -51,7 +51,7 @@ router.post('/admin/article/checkname',async (ctx,next)=>{
     })
 })
 router.post('/admin/article/add',async (ctx,next)=>{
-    let {tab,title,content}=ctx.request.body.values;
+    let {tab,title,content,author}=ctx.request.body.values;
     const addTab=()=>new Promise((resolve,reject)=>{
         const options= {upsert:true,new:true,setDefaultsOnInsert:true,useFindAndModify:false}
         Tab.findOneAndUpdate({tab},{$inc:{amount:1}},options,function(err,res){
@@ -64,7 +64,7 @@ router.post('/admin/article/add',async (ctx,next)=>{
     })
     const addArticle=()=>new Promise((resolve,reject)=>{
         let article=new Article({
-            tab,title,content
+            tab,title,content,author
         });
         article.save()
         .then(res=>{

@@ -136,11 +136,16 @@ main{
   box-shadow: 0 0 1px 1px #ddd;
   padding:25px;
 }
+.loading{
+  display: block;
+  margin:25% auto;
+
+}
 .article-list{
   background: #fff;
   padding:30px;
   border-radius: 5px;
-  box-shadow: 4px 4px 3px 2px #ddd;
+  box-shadow: 2px 2px 2px 1px #ddd;
   margin-bottom:20px;
 }
 .detail table{
@@ -155,11 +160,6 @@ main{
 }
 .detail li{
   margin-left:20px;
-}
-.detail pre{
-  display: block;
-  border:1px solid rgb(223,226,229);
-  padding:10px 5px;
 }
 /* aside */
 aside{
@@ -199,6 +199,12 @@ aside{
 .login-form .login-form-button,#register .register-form-button{
   width:100%;
 }
+.login-form .ant-spin{
+  margin-left:10px;
+}
+.login-form .ant-spin-dot-item{
+  background-color:#fff;
+}
 .isLogin{
   border:none;
   cursor: pointer;
@@ -209,14 +215,6 @@ aside{
 .ant-timeline{
   padding:30px;
   background: #fff;
-}
-/* footer */
-footer{
-  width:100%;
-  height:100px;
-  background: #000;
-  border-top:10px solid #2df;
-  color:#fff;
 }
 /*login*/
 .login{

@@ -17,7 +17,7 @@
 #admin .navigation{
     width:256px;
     padding-top:10px;
-    position:absolute;
+    position: absolute;
     top:50px;
     bottom:0;
 }
@@ -29,7 +29,11 @@
 }
 .admin-content{
     margin-left:256px;
-    padding:20px; 
+}
+.admin-content button{
+    color:rgb(24,144,255);
+    background: none;
+    cursor: pointer;
 }
 .editor{
     position: relative;

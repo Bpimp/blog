@@ -27,7 +27,7 @@ export const postAxios=(url,params)=>{
                 reject(err)
             }
         )
-        .catch(function(error){
+        .catch((error)=>{
             reject(error)
         })
     })
@@ -35,15 +35,26 @@ export const postAxios=(url,params)=>{
 export const getAxios=(url,params)=>{
     return new Promise((resolve,reject)=>{
         instance(url,params)
-        .then(
-            function(res){
+        .then(res=>{
                 resolve(res.data)
-            },
-            function(err){
+            },err=>{
                 reject(err)
             }
         )
-        .catch(function(error){
+        .catch(error=>{
+            reject(error)
+        })
+    })
+}
+export const delAxios=(url,params)=>{
+    return new Promise((resolve,reject)=>{
+        instance.delete(url,{data:{params}})
+        .then(res=>{
+            resolve(res)
+        },err=>{
+            reject(err)
+        })
+        .catch(error=>{
             reject(error)
         })
     })
@@ -82,7 +93,7 @@ export default{
     获取用户列表
     */
     getUserList(){
-        return getAxios('/admin/userlist')
+        return getAxios('/admin/user')
     },
     //检测文章标题
     checkArticleName(params){
@@ -92,5 +103,8 @@ export default{
     addArticle(params){
         return postAxios('/admin/article/add',params)
     },
-    
+    //删除用户
+    deleteUser(params){
+        return delAxios('/delete/user',params)
+    }
 }

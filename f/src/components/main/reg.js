@@ -33,6 +33,7 @@ class Reg extends React.Component {
     .then(res=>{
       if(res.code===2){
         sessionStorage.setItem('token',res.token)
+        sessionStorage.setItem('author',values.username)
         pathname==='/login'?this.props.history.push('/'):this.props.history.go(0)
       }
     })

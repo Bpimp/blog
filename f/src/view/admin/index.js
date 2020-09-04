@@ -15,7 +15,7 @@ class Admin extends React.Component{
                     <AdminNav/>
                     <Navigation/>
                     <AdminRoute/>
-                </>):<Error/>}
+                </>):<Error isAdmin={isAdmin}/>}
             </div>
         )
     }

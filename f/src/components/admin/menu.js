@@ -1,36 +1,29 @@
 import React from 'react';
 import {Menu} from 'antd';
-import {Link} from 'react-router-dom';
-import {
-    HomeOutlined,
-    DesktopOutlined,
-    ContainerOutlined,
-  } from '@ant-design/icons';
+import {Link,withRouter} from 'react-router-dom';
 
   class Navigation extends React.Component {
     render() {
+      const selected=this.props.location.pathname;
       return (
           <Menu
             className="navigation"
-            defaultSelectedKeys={['1']}
+            defaultSelectedKeys={[`${selected}`]}
             defaultOpenKeys={['sub1']}
             mode="inline"
             theme="dark"
           >
-            <Menu.Item key="1" icon={<HomeOutlined />}>
+            <Menu.Item key="/admin">
                <Link to='/admin'>首页</Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-            <Link to='/admin/user'>用户</Link>
+            <Menu.Item key="/admin/list/user">
+            <Link to='/admin/list/user'>用户</Link>
             </Menu.Item>
-            <Menu.Item key="3" icon={<ContainerOutlined />}>
-            <Link to='/admin/article'>文章</Link>
-            </Menu.Item>
-            <Menu.Item key="4" icon={<ContainerOutlined />}>
-              Option 3
+            <Menu.Item key="/admin/list/article">
+            <Link to='/admin/list/article'>文章</Link>
             </Menu.Item>
           </Menu>
       );
     }
   }
-  export default Navigation;
+  export default withRouter(Navigation);

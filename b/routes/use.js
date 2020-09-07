@@ -78,8 +78,8 @@ router.post('/user/login',async(ctx,next)=>{
     })
 })
 router.delete('/delete/user',async(ctx,next)=>{
-    const {id}=ctx.request.body.params;
-    await User.deleteOne({_id:id})
+    const {_id}=ctx.request.body.params;
+    await User.deleteOne({_id})
     .then(res=>{
         responseData.code=3;
         responseData.msg='success';

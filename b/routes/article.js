@@ -81,6 +81,14 @@ router.post('/admin/article/add',async (ctx,next)=>{
         responseData.msg="添加成功";
         ctx.body=responseData;
     })
-
+})
+router.delete('/delete/article',async(ctx,next)=>{
+    const {_id}=ctx.request.body.params;
+    await Article.deleteOne({_id})
+    .then(res=>{
+        responseData.code=3;
+        responseData.msg="success";
+        ctx.body=responseData;
+    })
 })
 module.exports=router;

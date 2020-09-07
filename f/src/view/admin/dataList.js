@@ -6,7 +6,7 @@ class DataList extends React.Component{
     render(){
         const {id}=this.props.match.params;
         return (
-            <List id={id}/>
+                <List key={id} id={id}/>
         )
     }
 }

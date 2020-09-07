@@ -55,10 +55,19 @@ class MdEditor extends React.Component{
         })
     }
     componentDidMount(){
+        const {state}=this.props.location;
+        console.log(state)
         api.getCategory()
         .then(res=>{
             this.setState({
                 tabs:res.data
+            })
+        })
+        state&&api.getDetails(state)
+        .then(res=>{
+            this.setState({
+                name:res.data.tab,
+                value:res.data.content
             })
         })
     }

@@ -11,7 +11,7 @@ class List extends React.Component{
             loading:true,
             data:[]
         }
-        this.getData()
+        this.getList()
         this.userColumns=[
             {
                 title:'userName',
@@ -54,16 +54,16 @@ class List extends React.Component{
                 key:'action',
                 render:(text,record)=>(
                     <Space size='middle'>
-                        <Link to='/admin/editor'>修改</Link>
+                        <Link to={{pathname:'/admin/editor',state:record._id}}>修改</Link>
                         <button onClick={()=>this.delete(record._id)} className="delete">删除</button>
                     </Space>
                 )
             }
         ]
     }  
-    getData=()=>{
+    getList=()=>{
         const {id}=this.props;
-        api.getUserList()
+        api.getDataList(id)
         .then(res=>{
             res.data.map(item=>{
                 item.key=item._id
@@ -75,24 +75,26 @@ class List extends React.Component{
             })
         })
     }
-    delete=(id)=>{
-        api.deleteUser({id})
+    delete=(_id)=>{
+        const {id}=this.props;
+        api.delete({id,_id})
         .then(res=>{
             if(res.data.code===3&&res.status===200){
                 message.success('删除成功',2).then(()=>{
-                    this.getData()
+                    this.getList()
                 })
             }
         })
     }
     render(){
         const {data,loading}=this.state;
-        console.log(this.props)
+        const {id}=this.props;
         return (
             <Table 
+                bordered={true}
                 loading={loading}
                 className="admin-content" 
-                columns={this.userColumns} 
+                columns={id==="user"?this.userColumns:this.articleColumns} 
                 dataSource={data}
             />
         )

@@ -24,7 +24,7 @@ class ArtList extends React.Component{
             })
         })
         this.props.dispatch(dispatch=>{
-            api.getData(tab)
+            api.getArticle(tab)
             .then(res=>{
                 dispatch({
                     type:'ARTICLE_UPDATE_SUCC',

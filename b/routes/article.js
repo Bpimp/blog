@@ -82,12 +82,29 @@ router.post('/admin/article/add',async (ctx,next)=>{
         ctx.body=responseData;
     })
 })
+router.post('/edit',async(ctx,next)=>{
+    const {tab,title,content,_id}=ctx.request.body.values;
+    await(Article.findOneAndUpdate({_id},{tab,title,content},{useFindAndModify:false},function(){
+        responseData.code=2;
+        responseData.msg='success';
+        ctx.body=responseData
+    }))
+})
 router.delete('/delete/article',async(ctx,next)=>{
     const {_id}=ctx.request.body.params;
     await Article.deleteOne({_id})
     .then(res=>{
         responseData.code=3;
         responseData.msg="success";
+        ctx.body=responseData;
+    })
+})
+router.get('/all',async(ctx,next)=>{
+    await Article.find().sort({'create_time':'-1'})
+    .then(res=>{
+        responseData.code=2;
+        responseData.msg='success';
+        responseData.data=res;
         ctx.body=responseData;
     })
 })

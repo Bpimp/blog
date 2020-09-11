@@ -56,7 +56,7 @@ aside li{
 /* header */
 header{
   height:50px;
-  background:rgba(152,185,133,.3)
+  background:rgba(152,185,133,.3);
 }
 #navbox{
   width:75%;
@@ -133,7 +133,6 @@ main{
 .content{
   margin-right:298px;
   background: #fff;
-  box-shadow: 0 0 1px 1px #ddd;
   padding:25px;
 }
 .loading{
@@ -199,10 +198,10 @@ aside{
 .login-form .login-form-button,#register .register-form-button{
   width:100%;
 }
-.login-form .ant-spin{
+.register-form .ant-spin,.login-form .ant-spin{
   margin-left:10px;
 }
-.login-form .ant-spin-dot-item{
+.register-form .ant-spin-dot-item,.login-form .ant-spin-dot-item{
   background-color:#fff;
 }
 .isLogin{

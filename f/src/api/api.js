@@ -66,10 +66,6 @@ export default{
     getCategory(){
         return getAxios('/getCategory')
     },
-    //获取文章列表
-    getArticle(params){
-        return getAxios(`/article?tab=${params}`)
-    },
     //获取文章内容
     getDetails(params){
         return getAxios(`/content?id=${params}`)
@@ -87,7 +83,10 @@ export default{
     login(params){
         return postAxios('/user/login',params)
     },
-    
+    //获取文章列表
+    getArticle(params){
+        return getAxios(`/article?tab=${params}`)
+    },
     /*
     后台管理界面接口
     获取用户或文章列表
@@ -96,7 +95,7 @@ export default{
         if(params==='user'){
             return getAxios('/admin/user')
         }
-        return getAxios('/article?tab=all')
+        return getAxios('/all')
     },
     //检测文章标题
     checkArticleName(params){
@@ -105,6 +104,10 @@ export default{
     //添加文章
     addArticle(params){
         return postAxios('/admin/article/add',params)
+    },
+    //修改文章信息
+    edit(params){
+        return postAxios('/edit',params)
     },
     //删除用户
     delete(params){

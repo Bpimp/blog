@@ -1,11 +1,12 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import api from '../../api/api';
 import {
   Form,
   Input,
-  Button
+  Button,
+  Spin
 } from 'antd';
 
 const formItemLayout = {
@@ -26,22 +27,24 @@ const formItemLayout = {
     },
   },
 };
-class Reg extends React.Component {
-  onFinish = values => {
-    const {pathname}=this.props.history.location;
+const Reg=(props)=>{
+  const [loading,isLoading]=useState(false);
+  const onFinish = values => {
+    const {pathname}=props.history.location;
     api.register({values})
     .then(res=>{
       if(res.code===2){
         sessionStorage.setItem('token',res.token)
         sessionStorage.setItem('author',values.username)
-        pathname==='/login'?this.props.history.push('/'):this.props.history.go(0)
+        isLoading(true)
+        pathname==='/login'?props.history.push('/'):props.history.go(0)
       }
     })
     .catch(err=>{
       console.log(err)
     })
   };
-  checkName=(rule,value)=>{
+  const checkName=(rule,value)=>{
     return api.checkName({value})
     .then(res=>{
       if(res.code===1){
@@ -50,8 +53,8 @@ class Reg extends React.Component {
       return Promise.resolve("")
     })
   }
-  tolog=()=>{
-      this.props.dispatch(dispatch=>{
+  const tolog=()=>{
+      props.dispatch(dispatch=>{
         dispatch({
           type:'TO_LOG',
           data:{
@@ -60,13 +63,12 @@ class Reg extends React.Component {
         })
       })
   }
-  render(){
     return (
       <div className="mask">
         <Form
         className="piece"
           name="register"
-          onFinish={this.onFinish}
+          onFinish={onFinish}
           scrollToFirstError
         >
         <Form.Item
@@ -78,7 +80,7 @@ class Reg extends React.Component {
                 required: true,
                 message: "请输入用户名",
               },{
-                validator:this.checkName
+                validator:checkName
               }
             ]}
           >
@@ -161,13 +163,13 @@ class Reg extends React.Component {
           <Form.Item >
             <Button type="primary" htmlType="submit" className="register-form-button">
               注册
+              {loading?<Spin/>:''}
             </Button>
-            Or <span className="isLogin" onClick={this.tolog}>login now!</span>
+            Or <span className="isLogin" onClick={tolog}>login now!</span>
           </Form.Item>
         </Form>
       </div>
     );
   }
-};
 
 export default withRouter(connect(state=>state.user)(Reg));

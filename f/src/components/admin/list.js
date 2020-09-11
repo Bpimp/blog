@@ -54,7 +54,7 @@ class List extends React.Component{
                 key:'action',
                 render:(text,record)=>(
                     <Space size='middle'>
-                        <Link to={{pathname:'/admin/editor',state:record._id}}>修改</Link>
+                        <Link to={{pathname:'/admin/editor',state:record}}>修改</Link>
                         <button onClick={()=>this.delete(record._id)} className="delete">删除</button>
                     </Space>
                 )

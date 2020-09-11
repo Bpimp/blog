@@ -13,7 +13,7 @@ class TimeLine extends React.Component{
         }
     }
     componentDidMount(){
-        api.getData('all')
+        api.getArticle('all')
         .then(res=>{
             this.setState({
                 data:res.data

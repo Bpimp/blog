@@ -5,10 +5,12 @@ import {Link,withRouter} from 'react-router-dom';
   class Navigation extends React.Component {
     render() {
       const selected=this.props.location.pathname;
+      console.log(selected)
       return (
           <Menu
             className="navigation"
-            defaultSelectedKeys={[`${selected}`]}
+            defaultSelectedKeys={['/admin']}
+            selectedKeys={[`${selected}`]}
             defaultOpenKeys={['sub1']}
             mode="inline"
             theme="dark"

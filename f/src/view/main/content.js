@@ -2,10 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import Aside from '../../components/main/sidebar/index';
+import CodeBlock from '../../components/CodeBlock';
+import Reply from '../../components/main/comment/index';
 import api from '../../api/api';
 import {Spin} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import CodeBlock from '../../components/CodeBlock';
+
 
 const antIcon=<LoadingOutlined style={{ fontSize: 24 }} spin />;
 class Content extends React.Component{
@@ -35,6 +37,7 @@ class Content extends React.Component{
     }
     render(){
         const {data,loading}=this.props;
+        const {id}=this.props.match.params;
         return (
                 <main className="clear">
                     <Aside/>
@@ -49,6 +52,8 @@ class Content extends React.Component{
                                 code:CodeBlock
                             }}
                         />
+                        <hr/>
+                        <Reply id={id}/>
                     </div>
                 </main>
         )

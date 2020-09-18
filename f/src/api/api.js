@@ -87,6 +87,13 @@ export default{
     getArticle(params){
         return getAxios(`/article?tab=${params}`)
     },
+    //提交评论
+    addComment(params){
+        return postAxios('/addcomment',params)
+    },
+    getComment(params){
+        return getAxios(`/getcomment?id=${params}`)
+    },
     /*
     后台管理界面接口
     获取用户或文章列表

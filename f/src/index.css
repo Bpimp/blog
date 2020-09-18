@@ -12,7 +12,7 @@ button{
   display: block;
   clear: both;
 }
-header li,aside li{
+header li,aside li,.comments li{
   list-style: none;
 }
 a{
@@ -21,6 +21,11 @@ a{
 }
 h2,h3{
   font-weight: normal;
+}
+hr{
+  background-color: #ddd;
+  border:none;
+  height:1px;
 }
 /* public */
 body {
@@ -147,6 +152,9 @@ main{
   box-shadow: 2px 2px 2px 1px #ddd;
   margin-bottom:20px;
 }
+.detail{
+  margin-bottom:30px;
+}
 .detail table{
   width:100%;
   border-bottom:1px solid rgb(223,226,229);
@@ -159,6 +167,14 @@ main{
 }
 .detail li{
   margin-left:20px;
+}
+.comments button{
+  float:right;
+  margin-top:-20px;
+}
+.comments .ant-comment-actions{
+  text-align: right;
+  margin-top:0;
 }
 /* aside */
 aside{

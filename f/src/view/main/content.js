@@ -53,7 +53,7 @@ class Content extends React.Component{
                             }}
                         />
                         <hr/>
-                        <Reply id={id}/>
+                        <Reply article_id={id}/>
                     </div>
                 </main>
         )

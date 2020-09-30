@@ -20,7 +20,7 @@ let ArticleSchema=new mongoose.Schema({
     },
     content:{
         type:String,
-        require:true
+        required:true
     },
     tab:{
         type:String

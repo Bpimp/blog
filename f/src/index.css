@@ -1,5 +1,5 @@
 /* reset */
-body,ul,li,h2,h3,p,a,button,input{
+body,ul,li,h2,h3,p,a,button,input,hr{
   margin:0;
   padding:0;
 }
@@ -168,13 +168,61 @@ main{
 .detail li{
   margin-left:20px;
 }
+.comments{
+  width:100%;
+}
+.comments .comitem{
+  padding-left:20px;
+}
+.comments .sec_com{
+  padding-left:20px;
+}
+.comments .comitem .comeditor{
+  padding-left:20px;
+}
 .comments button{
   float:right;
   margin-top:-20px;
 }
 .comments .ant-comment-actions{
-  text-align: right;
+  text-align:right;
   margin-top:0;
+}
+.comments .ant-comment-actions .reply{
+  font-size:12px;
+  cursor:pointer;
+}
+.comments .ant-comment-actions li:first-child{
+  float: left;
+}
+.comments .ant-modal-root{
+  margin-top:100px;
+}
+.comments .ant-modal-wrap{
+  overflow:hidden;
+  position:absolute;
+  top:66px;
+}
+.comment .ant-modal-content{
+  box-shadow:none!important;
+  -webkit-box-shadow:none!important;
+}
+.comments .ant-modal-body{
+  padding:0;
+}
+.comments .ant-modal{
+  padding:0;
+  margin-right:0;
+  top:0;
+}
+.comments .ant-form{
+  box-sizing: border-box;
+  padding:10px;
+  padding-bottom:0;
+  border:1px solid rgb(241,241,242);
+}
+.comments .ant-form div:last-child{
+  margin-bottom:0;
 }
 /* aside */
 aside{

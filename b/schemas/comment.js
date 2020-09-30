@@ -14,7 +14,7 @@ let CommentSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    text:{
+    content:{
         type:String,
         required:true
     },
@@ -23,10 +23,6 @@ let CommentSchema=mongoose.Schema({
         default:defaultTime
     },
     likes:{
-        type:Number,
-        default:0
-    },
-    dislikes:{
         type:Number,
         default:0
     },
@@ -39,12 +35,8 @@ let CommentSchema=mongoose.Schema({
         username:{
             type:String
         },
-        text:{type:String},
+        content:{type:String},
         likes:{
-            type:Number,
-            default:0
-        },
-        dislikes:{
             type:Number,
             default:0
         },
@@ -58,4 +50,4 @@ let CommentSchema=mongoose.Schema({
         }
     }]
 })
-module.exports=mongoose.Model('Comment',CommentSchema)
+module.exports=mongoose.model('Comment',CommentSchema)

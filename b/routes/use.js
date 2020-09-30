@@ -50,20 +50,21 @@ router.post('/user/register',async (ctx,next)=>{
             responseData.msg="注册成功";
             const token=sign({username,},'testkey');
             responseData.token=token;
+            responseData.id=user._id;
             ctx.body=responseData;
         })
     })
 router.post('/user/login',async(ctx,next)=>{
     let {username,password}=ctx.request.body;
     password=Encryption(password,username);
-    await User.findOne({username,password},(err,doc)=>{
+    await User.findOne({username,password},(err,user)=>{
         if(err){
             responseData.code=1;
             responseData.msg="服务器异常";
             ctx.body=responseData;
             return;
         }
-        if(!doc){
+        if(!user){
             responseData.code=1;
             responseData.msg="用户名或密码错误";
             ctx.body=responseData;
@@ -72,8 +73,9 @@ router.post('/user/login',async(ctx,next)=>{
         const token=sign({username},'testkey');
         responseData.code=2;
         responseData.msg="登录成功";
-        responseData.isAdmin=doc.isAdmin;
+        responseData.isAdmin=user.isAdmin;
         responseData.token=token;
+        responseData.id=user._id;
         ctx.body=responseData
     })
 })

@@ -1,7 +1,8 @@
 import React from 'react';
 import ComEditor from './comEditor';
-import ComItem from './comItem';
-import {List,message} from 'antd';
+import ComList from './comlist';
+import api from '../../../api/api';
+import {message} from 'antd';
 import moment from 'moment';
 
 class Reply extends React.Component{
@@ -9,32 +10,37 @@ class Reply extends React.Component{
         super();
         this.state={
             comments:[],
-            value:'',
-            likes:0,
-            action:null
+            value:''
         }
     }
     handleSubmit=()=>{
-        const author=sessionStorage.getItem('author');
-        if(!author){
+        const {comments}=this.state;
+        const username=sessionStorage.getItem('author');
+        const user_id=sessionStorage.getItem('userId');
+        if(!username){
             message.warning('请先登录')
             return ;
         }
         if(!this.state.value){
             return ;
         }
-        this.setState({
-            value:'',
-            likes:0,
-            action:null,
-            comments:[
-                {
-                    author,
-                    content:<p>{this.state.value}</p>,
-                    datetime:moment().fromNow(),
+        const {article_id}=this.props;
+        const {value}=this.state;
+        const create_time=moment().format();
+        api.addComment({article_id,username,value,user_id})
+        .then(res=>{
+            this.setState({
+                value:'',
+                comments:[
+                    {
+                        create_time,
+                        username,
+                        content:value,
+                        sec_reply:[]
                 },
-                ...this.state.comments
+                ...comments
             ]
+            })
         })
     }
     handleChange=e=>{
@@ -42,23 +48,29 @@ class Reply extends React.Component{
             value:e.target.value
         })
     }
+    componentDidMount(){
+        const {article_id}=this.props;
+        api.getComment(article_id)
+        .then(res=>{
+            if(res.code===2){
+                this.setState({
+                    comments:res.data
+                })
+            }
+        })
+    }
     render(){
         const {comments,value}=this.state;
-        const ComList=({comments})=>(
-            <List
-                dataSource={comments}
-                itemLayout="horizontal"
-                renderItem={props=>(<ComItem comment={props}/>)}
-            />
-        )
         return (
-            <div className="comments">
+            <div className="comments clear">
                 <ComEditor
                     handleChange={this.handleChange}
                     handleSubmit={this.handleSubmit}
                     value={value}
                 />
-                {comments.length>0&&<ComList comments={comments}/>}
+                <div className='comitem'>
+                    {comments.length>0&&<ComList comments={comments}/>}
+                </div>
             </div>
         )
     }

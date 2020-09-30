@@ -87,12 +87,17 @@ export default{
     getArticle(params){
         return getAxios(`/article?tab=${params}`)
     },
-    //提交评论
+    //提交一级评论
     addComment(params){
         return postAxios('/addcomment',params)
     },
+    //提交二级评论
+    addseccomment(params){
+        return postAxios('/addseccomment',params)
+    },
+    //获取评论
     getComment(params){
-        return getAxios(`/getcomment?id=${params}`)
+        return getAxios(`/getcomment?article_id=${params}`)
     },
     /*
     后台管理界面接口

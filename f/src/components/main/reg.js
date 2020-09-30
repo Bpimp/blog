@@ -36,6 +36,7 @@ const Reg=(props)=>{
       if(res.code===2){
         sessionStorage.setItem('token',res.token)
         sessionStorage.setItem('author',values.username)
+        sessionStorage.setItem('userId',res.id)
         isLoading(true)
         pathname==='/login'?props.history.push('/'):props.history.go(0)
       }

@@ -16,7 +16,7 @@ class ComEditor extends React.Component{
         const {value,handleChange,handleSubmit}=this.props
         return (
             <Comment
-            style={{width:'98%',float:'right'}}
+                className='comeditor'
                 content={
                     <Editor
                         onChange={handleChange}

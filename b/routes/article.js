@@ -16,6 +16,7 @@ router.get('/article',async (ctx,next)=>{
     const conditions=tab==='all'?{}:{tab};
     await Article.find(conditions,{'_id':1,'tab':1,'title':1,'create_time':1,'author':1},{sort:{create_time:-1}})
     .then(article=>{
+        console.log(article)
         responseData.code=2;
         responseData.msg='success';
         responseData.data=article;

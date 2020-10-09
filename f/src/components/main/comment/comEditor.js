@@ -4,7 +4,7 @@ import {Comment,Form,Input,Button} from 'antd';
 const Editor =({onChange,onSubmit,value})=>(
     <>
         <Form.Item>
-            <Input type='text' placeholder="输入评论..." row={1} onChange={onChange} value={value}/>
+            <Input type='text' placeholder="输入评论..." onChange={onChange} value={value}/>
         </Form.Item>
         <Form.Item>
             <Button onClick={onSubmit} type='primary'>评论</Button>

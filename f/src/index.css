@@ -12,7 +12,7 @@ button{
   display: block;
   clear: both;
 }
-header li,aside li,.comments li{
+header li,aside li,.comments li,.article-list li{
   list-style: none;
 }
 a{
@@ -23,7 +23,7 @@ h2,h3{
   font-weight: normal;
 }
 hr{
-  background-color: #ddd;
+  background-color: rgb(241,241,242);
   border:none;
   height:1px;
 }
@@ -57,7 +57,9 @@ aside li{
   font-size: 14px;
   line-height:26px;
 }
-
+#nav li,.article-list li{
+  float: left;
+}
 /* header */
 header{
   height:50px;
@@ -75,10 +77,6 @@ header{
   margin-right:30px;
   background:url(./img/logo.png) no-repeat;
   background-size: 125px 50px;
-}
-
-#nav li{
-  float: left;
 }
 #nav a{
   font-size: 14px;
@@ -147,10 +145,22 @@ main{
 }
 .article-list{
   background: #fff;
-  padding:30px;
+  padding:20px;
+  padding-bottom:40px;
   border-radius: 5px;
-  box-shadow: 2px 2px 2px 1px #ddd;
+  box-shadow: 0 0 1px 1px rgb(241,241,242);
   margin-bottom:20px;
+}
+.article-list .ant-space{
+  color:rgba(0,0,0,0.5)
+}
+.article-list .ant-list-item-meta-title{
+  margin-bottom:10px;
+  font-size:20px;
+}
+.article-list li{
+  margin-right:10px;
+  font-size:12px;
 }
 .detail{
   margin-bottom:30px;
@@ -174,9 +184,6 @@ main{
 .comments .comitem{
   padding-left:20px;
 }
-.comments .sec_com{
-  padding-left:20px;
-}
 .comments .comitem .comeditor{
   padding-left:20px;
 }
@@ -188,41 +195,8 @@ main{
   text-align:right;
   margin-top:0;
 }
-.comments .ant-comment-actions .reply{
-  font-size:12px;
-  cursor:pointer;
-}
 .comments .ant-comment-actions li:first-child{
   float: left;
-}
-.comments .ant-modal-root{
-  margin-top:100px;
-}
-.comments .ant-modal-wrap{
-  overflow:hidden;
-  position:absolute;
-  top:66px;
-}
-.comment .ant-modal-content{
-  box-shadow:none!important;
-  -webkit-box-shadow:none!important;
-}
-.comments .ant-modal-body{
-  padding:0;
-}
-.comments .ant-modal{
-  padding:0;
-  margin-right:0;
-  top:0;
-}
-.comments .ant-form{
-  box-sizing: border-box;
-  padding:10px;
-  padding-bottom:0;
-  border:1px solid rgb(241,241,242);
-}
-.comments .ant-form div:last-child{
-  margin-bottom:0;
 }
 /* aside */
 aside{

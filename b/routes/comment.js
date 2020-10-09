@@ -38,4 +38,13 @@ router.get('/getcomment',async(ctx,next)=>{
         ctx.body=responseData;
     })
 })
+router.delete('/delComment',async(ctx,next)=>{
+    const {_id}=ctx.request.body.params;
+    await Comment.deleteOne({_id})
+    .then(res=>{
+        responseData.code=3;
+        responseData.msg="success";
+        ctx.body=responseData;
+    })
+})
 module.exports=router;

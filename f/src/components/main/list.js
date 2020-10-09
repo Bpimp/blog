@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {List,Space} from 'antd';
-import {MessageOutlined, LikeOutlined} from '@ant-design/icons';
+import {MessageOutlined} from '@ant-design/icons';
 import api from '../../api/api';
 
 
@@ -58,13 +58,19 @@ class ArtList extends React.Component{
                         className="article-list"
                         key={item._id}
                         actions={[
-                            <IconText icon={LikeOutlined} text='200' key='list-vertical-like-o'/>,
-                            <IconText icon={MessageOutlined} text='20' key='list-vertical-message'/>
+                            <Link to={`/content/${item._id}`}><IconText icon={MessageOutlined} text='20' key='list-vertical-message'/></Link>
                         ]}
                     >
                         <List.Item.Meta
                             title={<Link to={`/content/${item._id}`}>{item.title}</Link>}
-                        ></List.Item.Meta>
+                            description={
+                                <ul>
+                                    <li>{item.author}</li>
+                                    <li>{`${item.create_time.split('T')[0]} ${item.create_time.split('T')[1].slice(0,8)}`}</li>
+                                    <li>{item.tab}</li>
+                                </ul>
+                            }
+                        >{item.content}</List.Item.Meta>
                     </List.Item>
                 )}
             >

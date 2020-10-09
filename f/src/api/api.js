@@ -99,6 +99,9 @@ export default{
     getComment(params){
         return getAxios(`/getcomment?article_id=${params}`)
     },
+    delComment(params){
+        return delAxios('/delComment/',{_id:params})
+    },
     /*
     后台管理界面接口
     获取用户或文章列表

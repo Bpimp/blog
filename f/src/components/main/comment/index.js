@@ -1,8 +1,8 @@
 import React from 'react';
 import ComEditor from './comEditor';
-import ComList from './comlist';
+import Comitem from './comItem';
 import api from '../../../api/api';
-import {message} from 'antd';
+import {message,List} from 'antd';
 import moment from 'moment';
 
 class Reply extends React.Component{
@@ -59,8 +59,27 @@ class Reply extends React.Component{
             }
         })
     }
+    delcomment=(_id)=>{
+        api.delComment(_id)
+        .then(res=>{
+            let {comments}=this.state;
+            comments=comments.filter(item=>item._id!==_id);
+            this.setState({
+                comments
+            },()=>{
+                message.success('删除成功')
+            })
+        })
+    }
     render(){
         const {comments,value}=this.state;
+        const ComList=({comments})=>(
+            <List
+                dataSource={comments}
+                itemLayout='horizontal'
+                renderItem={props=><Comitem delcomment={this.delcomment} {...props}/>}
+            />
+        )
         return (
             <div className="comments clear">
                 <ComEditor

@@ -28,6 +28,14 @@ let ArticleSchema=new mongoose.Schema({
     likes:{
         type:Number,
         default:0
+    },
+    comments:{
+        type:Number,
+        default:0
+    },
+    visits:{
+        type:Number,
+        default:0
     }
 })
 module.exports=mongoose.model('Article',ArticleSchema);

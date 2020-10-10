@@ -14,9 +14,8 @@ router.use(async (ctx,next)=>{
 router.get('/article',async (ctx,next)=>{
     const tab=ctx.request.query.tab;
     const conditions=tab==='all'?{}:{tab};
-    await Article.find(conditions,{'_id':1,'tab':1,'title':1,'create_time':1,'author':1},{sort:{create_time:-1}})
+    await Article.find(conditions,{'_id':1,'tab':1,'title':1,'create_time':1,'author':1,'comments':1},{sort:{create_time:-1}})
     .then(article=>{
-        console.log(article)
         responseData.code=2;
         responseData.msg='success';
         responseData.data=article;
@@ -34,6 +33,15 @@ router.get('/content',async(ctx,next)=>{
     })
     .catch(err=>{
         ctx.body=err
+    })
+})
+router.post('/addvisit',async(ctx,next)=>{
+    const id=ctx.request.body.id;
+    const options= {upsert:true,new:true,setDefaultsOnInsert:true,useFindAndModify:false}
+    await Article.findOneAndUpdate({_id:id},{$inc:{visits:1}},options,function(err,res){
+        responseData.code=2;
+        responseData.msg='success';
+        ctx.body=responseData
     })
 })
 router.post('/admin/article/checkname',async (ctx,next)=>{

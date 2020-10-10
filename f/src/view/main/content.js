@@ -5,7 +5,7 @@ import Aside from '../../components/main/sidebar/index';
 import CodeBlock from '../../components/CodeBlock';
 import Reply from '../../components/main/comment/index';
 import api from '../../api/api';
-import {Spin} from 'antd';
+import {Spin,Tag} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 
@@ -13,14 +13,13 @@ const antIcon=<LoadingOutlined style={{ fontSize: 24 }} spin />;
 class Content extends React.Component{
     constructor(props){
         super(props);
-        this.getContent(this.props.match.params.id)
     }
-    getContent=(id)=>{
+    getContent=(id,isvisit)=>{
             this.props.dispatch(dispatch=>{
                 dispatch({type:'CONTENT_UPDATE'})
             })
             this.props.dispatch(dispatch=>{
-                api.getDetails(id)
+                api.getDetails(id,isvisit)
                 .then(res=>{
                     dispatch({
                         type:'CONTENT_UPDATE_SUCC',
@@ -35,6 +34,13 @@ class Content extends React.Component{
                 })
             })
     }
+    componentDidMount(){
+        const {id}=this.props.match.params;
+        const visit=sessionStorage.getItem('visit');
+        const isvisit=id===visit;
+        this.getContent(id,isvisit);
+        sessionStorage.setItem('visit',id)
+    }
     render(){
         const {data,loading}=this.props;
         const {id}=this.props.match.params;
@@ -43,8 +49,14 @@ class Content extends React.Component{
                     <Aside/>
                     <div className='content'>
                        {loading&&<Spin className="loading" indicator={antIcon}/>}
-                        <h1>{data.title}</h1>
-                        创建时间：<span>{data.create_time.split('T')[0]}</span>
+                        <div className="article_title">
+                            <h1>{data.title}</h1>
+                            <ul className="article_msg clear">
+                                <li>{data.create_time.split('T')[0]}</li>
+                                <li>阅读数:{data.visits}</li>
+                                <li><Tag>{data.tab}</Tag></li>
+                            </ul>
+                        </div>
                         <ReactMarkdown 
                             className="detail"
                             source={data.content}

@@ -3,7 +3,6 @@ import ComEditor from './comEditor';
 import Comitem from './comItem';
 import api from '../../../api/api';
 import {message,List} from 'antd';
-import moment from 'moment';
 
 class Reply extends React.Component{
     constructor(){
@@ -26,19 +25,13 @@ class Reply extends React.Component{
         }
         const {article_id}=this.props;
         const {value}=this.state;
-        const create_time=moment().format();
         api.addComment({article_id,username,value,user_id})
         .then(res=>{
             this.setState({
                 value:'',
                 comments:[
-                    {
-                        create_time,
-                        username,
-                        content:value,
-                        sec_reply:[]
-                },
-                ...comments
+                    res.data,
+                    ...comments
             ]
             })
         })

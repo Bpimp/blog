@@ -58,7 +58,7 @@ class ArtList extends React.Component{
                         className="article-list"
                         key={item._id}
                         actions={[
-                            <Link to={`/content/${item._id}`}><IconText icon={MessageOutlined} text='20' key='list-vertical-message'/></Link>
+                            <Link to={`/content/${item._id}`}><IconText icon={MessageOutlined} text={`${item.comments}`} key='list-vertical-message'/></Link>
                         ]}
                     >
                         <List.Item.Meta

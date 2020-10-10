@@ -3,7 +3,9 @@ function content(state={
         title:'',
         create_time:'',
         content:'',
-        tab:''
+        tab:'',
+        comments:0,
+        visits:0
     },
     loading:true
 },action){
@@ -17,6 +19,10 @@ function content(state={
             return {
                 data:action.data,
                 loading:false
+            }
+        case 'ADD_VISITS':
+            return {
+                visits:state.visits+1
             }
         default:
             return state

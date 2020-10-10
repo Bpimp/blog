@@ -1,5 +1,5 @@
 /* reset */
-body,ul,li,h2,h3,p,a,button,input,hr{
+body,ul,li,h1,h2,h3,p,a,button,input,hr{
   margin:0;
   padding:0;
 }
@@ -12,7 +12,7 @@ button{
   display: block;
   clear: both;
 }
-header li,aside li,.comments li,.article-list li{
+header li,aside li,.comments li,.article-list li,.article_title li{
   list-style: none;
 }
 a{
@@ -57,7 +57,7 @@ aside li{
   font-size: 14px;
   line-height:26px;
 }
-#nav li,.article-list li{
+#nav li,.article-list li,.article_title li{
   float: left;
 }
 /* header */
@@ -141,7 +141,18 @@ main{
 .loading{
   display: block;
   margin:25% auto;
-
+}
+.article_title h1{
+  text-align:center;
+}
+.article_msg{
+  display: flex;
+  justify-content:center;
+}
+.article_msg li{
+  color:rgb(200,200,200);
+  font-size:14px;
+  margin-right:5px;
 }
 .article-list{
   background: #fff;

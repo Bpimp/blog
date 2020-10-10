@@ -28,7 +28,7 @@ class Comitem extends React.Component{
             value:e.target.value
         })
     }
-    handleSubmit=()=>{
+    /* handleSubmit=()=>{
         const {_id}=this.props;
         const {value}=this.state;
         const username=sessionStorage.getItem('author');
@@ -47,7 +47,7 @@ class Comitem extends React.Component{
                 iseditor:false
             })
         })    
-    }
+    } */
     render(){
         const {action,likes}=this.state;
         const {content,username,create_time,delcomment,_id}=this.props;

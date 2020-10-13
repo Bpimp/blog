@@ -87,6 +87,10 @@ export default{
     getArticle(params){
         return getAxios(`/article?tab=${params}`)
     },
+    //点赞功能
+    addpraise(params){
+        return postAxios('/praise',params)
+    },
     //提交一级评论
     addComment(params){
         return postAxios('/addcomment',params)
@@ -100,7 +104,7 @@ export default{
         return getAxios(`/getcomment?article_id=${params}`)
     },
     delComment(params){
-        return delAxios('/delComment/',{_id:params})
+        return delAxios('/delComment/',params)
     },
     /*
     后台管理界面接口

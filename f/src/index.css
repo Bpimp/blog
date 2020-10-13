@@ -162,8 +162,11 @@ main{
   box-shadow: 0 0 1px 1px rgb(241,241,242);
   margin-bottom:20px;
 }
-.article-list .ant-space{
+.article-list li a{
   color:rgba(0,0,0,0.5)
+}
+.article-list .ant-list-item-meta a:hover{
+  color:rgb(0,127,255);
 }
 .article-list .ant-list-item-meta-title{
   margin-bottom:10px;

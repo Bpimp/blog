@@ -14,7 +14,7 @@ router.use(async (ctx,next)=>{
 router.get('/article',async (ctx,next)=>{
     const tab=ctx.request.query.tab;
     const conditions=tab==='all'?{}:{tab};
-    await Article.find(conditions,{'_id':1,'tab':1,'title':1,'create_time':1,'author':1,'comments':1},{sort:{create_time:-1}})
+    await Article.find(conditions,{'_id':1,'tab':1,'title':1,'create_time':1,'author':1,'comments':1,'praise':1},{sort:{create_time:-1}})
     .then(article=>{
         responseData.code=2;
         responseData.msg='success';
@@ -98,6 +98,16 @@ router.post('/edit',async(ctx,next)=>{
         responseData.msg='success';
         ctx.body=responseData
     }))
+})
+router.post('/praise',async(ctx,next)=>{
+    const {article_id,userId,action}=ctx.request.body;
+    const options=action?{$addToSet:{praise:userId}}:{$pull:{'praise':userId}}
+        await Article.updateOne({_id:article_id},options,{new:true})
+        .then(res=>{
+            responseData.code=2;
+            responseData.msg='success';
+            ctx.body=responseData
+        })
 })
 router.delete('/delete/article',async(ctx,next)=>{
     const {_id}=ctx.request.body.params;

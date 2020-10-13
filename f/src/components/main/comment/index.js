@@ -53,7 +53,8 @@ class Reply extends React.Component{
         })
     }
     delcomment=(_id)=>{
-        api.delComment(_id)
+        const {article_id}=this.props;
+        api.delComment({_id,article_id})
         .then(res=>{
             let {comments}=this.state;
             comments=comments.filter(item=>item._id!==_id);

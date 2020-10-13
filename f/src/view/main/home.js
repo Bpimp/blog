@@ -1,6 +1,6 @@
 import React from 'react';
 import Aside from '../../components/main/sidebar/index';
-import ArtList from '../../components/main/list';
+import ArtList from '../../components/main/articleList';
 
 class Home extends React.Component{
     render(){

@@ -29,6 +29,10 @@ let ArticleSchema=new mongoose.Schema({
         type:Number,
         default:0
     },
+    praise:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
+    }],
     comments:{
         type:Number,
         default:0

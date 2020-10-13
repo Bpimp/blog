@@ -57,8 +57,28 @@ router.get('/getcomment',async(ctx,next)=>{
     })
 })
 router.delete('/delComment',async(ctx,next)=>{
-    const {_id}=ctx.request.body.params;
-    await Comment.deleteOne({_id})
+    const {_id,article_id}=ctx.request.body.params;
+    const minusNum=()=>new Promise((resolve,reject)=>{
+        const options= {upsert:true,new:true,setDefaultsOnInsert:true,useFindAndModify:false}
+        Article.findOneAndUpdate({_id:article_id},{$inc:{comments:-1}},options,function(err,res){
+            if(err){
+                reject(err)
+                return ;
+            }
+            resolve()
+        })
+    })
+    const delcomment=()=>new Promise((resolve,reject)=>{
+        Comment.deleteOne({_id})
+        .then(res=>{
+            resolve()
+            return ;
+        })
+        .catch(err=>{
+            reject(err)
+        })
+    })
+    await Promise.all([minusNum(),delcomment()])
     .then(res=>{
         responseData.code=3;
         responseData.msg="success";

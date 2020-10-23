@@ -7,6 +7,7 @@ import api from '../../api/api';
 
 const Login = (props) => {
   const [loading,isLoading]=useState(false);
+  const [message,setmessage]=useState(null);
   const onFinish = values => {
     const {pathname}=props.history.location;
     api.login(values) 
@@ -18,8 +19,12 @@ const Login = (props) => {
         sessionStorage.setItem('author',values.username)
         sessionStorage.setItem('userId',res.id)
         isLoading(true)
+        setmessage(null)
         pathname==='/login'?props.history.push('/'):props.history.go(0)
+      }else if(res.code===1){
+        setmessage(res.msg)
       }
+      
     })
     .catch(err=>{
       console.log(err)
@@ -86,6 +91,7 @@ const Login = (props) => {
             登录
             {loading?<Spin/>:''}
           </Button>
+          {message?<div style={{color:'red'}}>{message}</div>:null}
           Or <span className="isLogin" onClick={toreg}>register now!</span>
         </Form.Item>
       </Form>

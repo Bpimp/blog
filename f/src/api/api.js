@@ -68,7 +68,7 @@ export default{
     },
     //获取文章内容
     getDetails(params){
-        return getAxios(`/content?id=${params}`)
+        return getAxios(`/content?id=${params.id}&isvisit=${params.isvisit}`)
     },
     //前端页面接口
     //注册 
@@ -103,6 +103,7 @@ export default{
     getComment(params){
         return getAxios(`/getcomment?article_id=${params}`)
     },
+    //删除评论
     delComment(params){
         return delAxios('/delComment/',params)
     },

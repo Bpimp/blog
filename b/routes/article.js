@@ -23,26 +23,33 @@ router.get('/article',async (ctx,next)=>{
     })
 })
 router.get('/content',async(ctx,next)=>{
-    const id=ctx.request.query.id;
-    await Article.findById(id)
-    .then(res=>{
-        responseData.code=2;
-        responseData.msg='success';
-        responseData.data=res;
-        ctx.body=responseData;
-    })
-    .catch(err=>{
-        ctx.body=err
-    })
-})
-router.post('/addvisit',async(ctx,next)=>{
-    const id=ctx.request.body.id;
-    const options= {upsert:true,new:true,setDefaultsOnInsert:true,useFindAndModify:false}
-    await Article.findOneAndUpdate({_id:id},{$inc:{visits:1}},options,function(err,res){
-        responseData.code=2;
-        responseData.msg='success';
-        ctx.body=responseData
-    })
+    const {id,isvisit}=ctx.request.query;
+    if(isvisit==='true'){
+        const addvisit=new Promise((resolve,reject)=>{
+            Article.findOneAndUpdate({_id:id},{$inc:{"visits":1}},{new:true,useFindAndModify:false},function(err,res){
+                resolve(res)
+            })
+        })
+        await addvisit.then(
+            res=>{
+                responseData.code=2;
+                responseData.msg='success';
+                responseData.data=res;
+                ctx.body=responseData;
+            }
+        )
+        return;
+    }
+        await Article.findById(id)
+        .then(res=>{
+            responseData.code=2;
+            responseData.msg='success';
+            responseData.data=res;
+            ctx.body=responseData;
+        })
+        .catch(err=>{
+            ctx.body=err
+        })
 })
 router.post('/admin/article/checkname',async (ctx,next)=>{
     const title=ctx.request.body.title;

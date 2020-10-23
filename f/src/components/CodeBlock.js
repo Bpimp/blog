@@ -13,7 +13,6 @@ class CodeBlock extends React.Component{
     }
     render(){
         const {language,value}=this.props;
-        console.log(language)
         return (
             <SyntaxHighlighter
                 language={language}

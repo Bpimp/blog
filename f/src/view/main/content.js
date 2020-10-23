@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import Aside from '../../components/main/sidebar/index';
 import CodeBlock from '../../components/CodeBlock';
@@ -8,39 +7,64 @@ import api from '../../api/api';
 import {Spin,Tag} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
-
 const antIcon=<LoadingOutlined style={{ fontSize: 24 }} spin />;
 class Content extends React.Component{
+    constructor(){
+        super();
+        this.state={
+            data:{
+                title:'',
+                create_time:'',
+                content:'',
+                tab:'',
+                comments:0,
+                visits:0
+            },
+            loading:true
+        }
+    }
     getContent=(id,isvisit)=>{
-            this.props.dispatch(dispatch=>{
-                dispatch({type:'CONTENT_UPDATE'})
+        api.getDetails({id,isvisit})
+        .then(res=>{
+            this.setState({
+                data:res.data,
+                loading:false
             })
-            this.props.dispatch(dispatch=>{
-                api.getDetails(id,isvisit)
-                .then(res=>{
-                    dispatch({
-                        type:'CONTENT_UPDATE_SUCC',
-                        data:res.data
-                    })
-                })
-                .catch(err=>{
-                    dispatch({
-                        type:'CONTENT_UPDATE_ERR',
-                        data:err
-                    })
-                })
-            })
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+     addId=(id)=>{
+        const articles=sessionStorage.getItem('articles');
+        if(!articles){
+            sessionStorage.setItem('articles',id);
+            this.getContent(id,true)
+            return;
+        }
+        const artarr=articles.split(',');
+        if(artarr.indexOf(id)===-1){
+            artarr.push(id)
+            sessionStorage.setItem('articles',artarr);
+            this.getContent(id,true);
+            return ;
+        }
+        this.getContent(id,false)
     }
     componentDidMount(){
         const {id}=this.props.match.params;
-        const visit=sessionStorage.getItem('visit');
-        const isvisit=id===visit;
-        this.getContent(id,isvisit);
-        sessionStorage.setItem('visit',id)
+        const userId=sessionStorage.getItem('userId');
+        if(userId){
+            this.addId(id);
+        }else{
+            this.getContent(id,false)
+        }
+        
     }
     render(){
-        const {data,loading}=this.props;
+        const {data,loading}=this.state;
         const {id}=this.props.match.params;
+        console.log(data)
         return (
                 <main className="clear">
                     <Aside/>
@@ -68,4 +92,4 @@ class Content extends React.Component{
         )
     }
 }
-export default connect(state=>state.content)(Content);
+export default Content;

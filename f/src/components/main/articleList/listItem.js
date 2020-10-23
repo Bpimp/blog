@@ -43,11 +43,11 @@ class ListItem extends React.Component{
     }
     render(){
         const {action,likes}=this.state;
-        const {item}=this.props;
+        const {item,style}=this.props;
         return (
             <List.Item 
-                className="article-list"
                 key={item._id}
+                style={style}
                 actions={[
                     <span onClick={()=>this.praise(item._id)}>
                         <span style={{marginRight:'8px'}}><IconText icon={action?LikeFilled:LikeOutlined}/></span>

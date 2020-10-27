@@ -284,3 +284,38 @@ aside{
   justify-content: center;
   align-items: center;
 }
+/* 404*/
+.main{
+  width:450px;
+  height:450px;
+  margin:2% auto 0;
+  background: url(../src/img/error.jpg)no-repeat 0px 0px;
+  border-radius:50%;
+  background-attachment: fixed;
+}
+.err-page{
+  padding:6% 0 10%;
+}
+.err-page h1{
+    font-size: 106px;
+    text-align: center;
+    color: #fff;
+    line-height: 106px;
+    text-shadow: 3px 4px 4px #000;
+    letter-spacing: 1px;
+}
+.err-page p {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 32px;
+  color: #714888;
+  text-shadow: 2px 0px;
+  letter-spacing: 2px;
+}
+.index-link{
+  margin:20px auto;
+  padding:10px 20px;
+  border-radius:6px;
+  color:#fff;
+  background:rgb(0,127,255);
+}

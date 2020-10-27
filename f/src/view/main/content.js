@@ -64,7 +64,6 @@ class Content extends React.Component{
     render(){
         const {data,loading}=this.state;
         const {id}=this.props.match.params;
-        console.log(data)
         return (
                 <main className="clear">
                     <Aside/>

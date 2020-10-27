@@ -24,9 +24,9 @@ class Aside extends React.Component{
                 <div id="intro" className="piece">
                     <h2 className="title">介绍</h2>
                     <ul>
-                        <li>职业：</li>
+                        <li>职业：小小技术员</li>
                         <li>Email：635733853@qq.com</li>
-                        <li className="ellipsis">简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</li>
+                        <li className="ellipsis">空余时间写的一个小博客</li>
                     </ul>
                 </div>
                 <Tag categories={categories}/>

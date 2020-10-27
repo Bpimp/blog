@@ -1,7 +1,5 @@
 import React,{createElement} from 'react';
-import {Comment,Tooltip,message} from 'antd';
-import moment from 'moment';
-import api from '../../../api/api';
+import {Comment,Tooltip} from 'antd';
 import {LikeOutlined,LikeFilled} from '@ant-design/icons';
 
 class Comitem extends React.Component{

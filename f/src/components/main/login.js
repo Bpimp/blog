@@ -12,7 +12,6 @@ const Login = (props) => {
     const {pathname}=props.history.location;
     api.login(values) 
     .then(res=>{
-      console.log(res)
       if(res.code===2){
         sessionStorage.setItem('token',res.token)
         sessionStorage.setItem('isAdmin',res.isAdmin)

@@ -1,6 +1,5 @@
 const router=require('koa-router')();
 const {sign}=require('jsonwebtoken');
-const jwt=require('koa-jwt');
 const User=require('../schemas/users');
 const {Encryption}=require('../md5/index');
 let responseData;
